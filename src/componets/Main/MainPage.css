@@ -1,0 +1,55 @@
+.Back{
+  background-color: rgb(241, 126, 165);
+}
+.block{
+    background-color: cornflowerblue;
+    margin: 25px 20px 0 20px ;
+    padding: 10px;
+    border: 2px solid rgb(121, 132, 196);
+    border-radius: 20px;
+}
+.BTitle{
+    background-color:rgb(66, 66, 66);
+    text-align: center;
+    color: rgb(241, 126, 165);
+    font-size: 40px;
+    font-style: italic;
+    border-radius: 10px;
+}
+.Details{
+    
+   display: flex;
+   justify-content: center;
+   align-items: center;
+    
+    
+}
+.Details div{
+    margin: 5px;
+    box-sizing: border-box;
+}
+.Apic img{
+   border-radius: 50%;
+    width: 30px;
+
+}
+.Author{
+   
+    
+
+}
+.date{
+   
+}
+.decs{
+    text-align: center;
+
+}
+
+.main{
+    
+
+}
+.data{
+    margin: 5px 5px 0 5px;
+}
