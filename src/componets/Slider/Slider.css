@@ -10,6 +10,14 @@
   background:	#FF676D;
   color: #fff;
 }
+.name{
+  overflow: hidden;
+max-width: 20ch;
+text-overflow: ellipsis;
+white-space: nowrap;
+}
+
+
 .container{
   max-width: 950px;
   width: 100%;
