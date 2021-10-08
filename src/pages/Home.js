@@ -1,7 +1,8 @@
 import React,{useEffect,useState} from 'react'
+import Block from '../componets/Block/Block'
 import Header from '../componets/Header/Header'
 import Slider from '../componets/Slider/Slider'
-import Tiles from '../componets/Tiles/Tiles'
+
 import "./Home.css"
 
 export const Home = () => {
@@ -25,7 +26,8 @@ export const Home = () => {
             {console.log(blog)}
             <Header />
             <Slider data={blog}/>
-            <Tiles/>         
+            <Block data={blog}/>
+                  
         </div>
     )
 }

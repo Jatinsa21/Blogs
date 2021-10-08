@@ -1,21 +1,22 @@
-import React, { useState } from "react";
-import proPic from "../Images/proPic.png";
-import "./Login.css";
-import { useHistory } from "react-router-dom";
+import React, { useState ,useEffect } from "react";
+import classes from './Login.module.css'
+import { useHistory ,Link} from "react-router-dom";
+import Alert from "./Alert/Alert";
 
 export default function Login() {
-  
+  const [done,setDone]=useState("")
+  useEffect(()=>{
+    if(done){
+      setTimeout(function(){ setDone(false)}, 3000);
+
+    }
+  })
     let history = useHistory();
   
     function goHome() {
       history.push("/home");
     }
-    function goRegistration() {
-      history.push("/registration");
-    }
-  
-
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   function handleSubmit(){
@@ -26,7 +27,7 @@ export default function Login() {
         body: JSON.stringify({
          
          password:password,
-         identifier:username
+         identifier:email
         }),
       })
         .then(result => result.json())
@@ -34,7 +35,7 @@ export default function Login() {
             if(result.jwt){
               goHome()
         }else{
-          alert("Invalid Details" )
+          setDone("Invalid Details" )
         }
         })
         .catch(e=>{
@@ -42,17 +43,32 @@ export default function Login() {
         })
       }
   return (
-    <div className="parentLogin">
-        <div className="formlogin"  >
+    <div className={classes.parentLogin}>
+      <div className={classes.alert}><Alert alert={done}/></div>
+        <div className={classes.formlogin}  >
             
-            <h1 >Login</h1> <img  src={proPic} style={{borderRadius: '50%',height:"15%"}} />
-            <input value={username} onChange={e=>setUsername(e.target.value)} type="text" placeholder="Username" className="field"/>
-            <input value={password} onChange={e=>setPassword(e.target.value)} type="password" placeholder="Password" className="field"/>
-            
-            <div className="Buttons"> 
-            <input type="submit" className="submitBtnr"onClick={handleSubmit} />
-                <button className="submitBtnr" onClick={goRegistration}>Registration</button>
+           <img  src="http://localhost:1337/uploads/icons8_new_view_80_f7a424678b.png"/>
+           <div className={classes.internal}>
+
+           <div className={classes.email}>
+               <label className={classes.label}>Email</label>
+               <input className={classes.input}  value={email} onChange={e=>setEmail(e.target.value)} type="email" />
+           </div>
+           <div className={classes.password}>
+               <label className={classes.label}>Password</label>
+               <input className={classes.input} value={password} onChange={e=>setPassword(e.target.value)} type="password" />
+            <div className={classes.forgot}>
+               <Link className={classes.forgotLink}  Link to='/forgot' > Forgot password?</Link>
+            </div>
+            </div>
+            <div className={classes.submit}>
+                <button type="submit"  onClick={handleSubmit} > Sigin </button>
+            </div>
+            <div className={classes.register}>
+               <span className={classes.span}> To registration?</span><Link className={classes.forgotLink} to='/registration'>Click here</Link>
               </div>
+           </div>
+             
         </div>
     </div>
   );

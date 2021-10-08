@@ -26,7 +26,7 @@ function Slider({data}) {
 
               </div>
               <div className="cards">
-              {data.filter(el =>3< el.id< 7).map(ell => (
+              {data.filter(el => el.id> 3 && el.id<7).map(ell => (
     <div className="card">
      <div className="content">
        <div className="img">

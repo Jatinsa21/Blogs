@@ -2,10 +2,10 @@
 import './App.css';
 import Login from './componets/Login';
 import Registration from './componets/Registraion';
-import Header from './componets/Header/Header';
 import { Home } from './pages/Home';
 import {Route,Switch} from "react-router-dom"
 import MainPage from './componets/Main/MainPage';
+import Forgot from './componets/ForgotPassword/Forgot';
 function App() {
   return (<>
       
@@ -16,6 +16,7 @@ function App() {
       <Route exact path="/home" component={Home}/>
       <Route exact path="/registration" component={Registration}/>
       <Route exact path="/main" component={MainPage}/>
+      <Route exact path="/forgot" component={Forgot}/>
 
     </Switch>
     </>
