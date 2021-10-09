@@ -3,7 +3,7 @@ import './Slider.css'
 
 function Slider({data}) {
     return (
-       
+      // https://blogs21.herokuapp.com/uploads/23_ad1fd0971f.jpeg?403264.3999999985
           <div className="container">
             <input type="radio" name="dot" id="one"/>
             <input type="radio" name="dot" id="two"/>
@@ -13,7 +13,7 @@ function Slider({data}) {
                   <div className="card">
                   <div className="content">
                     <div className="img">
-                    {ell.BlogImg?<img src={'http://localhost:1337'+ell.BlogImg.url}/>:null}
+                    {ell.BlogImg?<img src={`${process.env.REACT_APP_HOST}${ell.BlogImg.url}`}/>:null}
                     </div>
                     <div className="details">
                       <div className="name">{ell.Heading}</div>
@@ -30,7 +30,7 @@ function Slider({data}) {
     <div className="card">
      <div className="content">
        <div className="img">
-       {ell.BlogImg?<img src={'http://localhost:1337'+ell.BlogImg.url}/>:null}
+       {ell.BlogImg?<img src={`${process.env.REACT_APP_HOST}+${ell.BlogImg.url}`}/>:null}
        </div>
        <div className="details">
          <div className="name">{ell.Heading}</div>

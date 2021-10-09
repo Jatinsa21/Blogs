@@ -1,6 +1,6 @@
-import React, { useState ,useEffect} from "react";
+import React, { useState ,useEffect }from "react";
 import classes from './Registraion.module.css';
-import { useHistory } from "react-router-dom";
+import { useHistory,Link } from "react-router-dom";
 import Alert from "./Alert/Alert";
 
 export default function Registration() {
@@ -90,7 +90,7 @@ export default function Registration() {
     console.log("hs")
     if (userNameBool && emailBool && passwordBool && confirmPassBool && samePassBool){
     //   setLoading(true)
-      fetch(`http://localhost:1337/auth/local/register`, {
+      fetch(`${process.env.REACT_APP_HOST}/auth/local/register`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -103,8 +103,12 @@ export default function Registration() {
         .then(result => {
           if(result.jwt){
             setDone("Done! so back to log in page")
+            setUsername("")
+            setPassword("")
+            setConfirmPassword("")
+            setEmail("")
           }else{
-            console.log(result)
+            
           setDone(result.message[0].messages[0].message)
             setLoading(false)
           }
@@ -123,11 +127,11 @@ export default function Registration() {
       <div className={classes.alert}><Alert alert={done}/></div>
       
         <div className={classes.formReg}>
-            <img  src="http://localhost:1337/uploads/icons8_new_view_80_f7a424678b.png"  />
+            <img  src={"https://res.cloudinary.com/ditkixi88/image/upload/v1633754999/icons8_new_view_80_d0ff370d68.png"} />
             <div className={classes.internal}>
             <div className={classes.username}>
               <label className={classes.lable}>Username </label>
-              <input ClassName={classes.input} type="text"  value={username} onChange={e=>setUsername(e.target.value)} className={classes.input} />
+              <input className={classes.input} type="text"  value={username} onChange={e=>setUsername(e.target.value)} className={classes.input} />
               <span className={classes.error}>{usernameError}</span>
             </div>
             <div className={classes.email}>
@@ -155,6 +159,9 @@ export default function Registration() {
               }} > Signup </button>
               {loading?<span>loading...</span>:null}
             </div>
+            <div className={classes.register}>
+               <span className={classes.span}> For Signin page</span><Link className={classes.forgotLink} to='/'>Click here</Link>
+              </div>
             </div>
         </div>
     </div>

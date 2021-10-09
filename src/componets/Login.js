@@ -21,13 +21,13 @@ export default function Login() {
 
   function handleSubmit(){
 
-    fetch(`http://localhost:1337/auth/local`, {
+    fetch(`${process.env.REACT_APP_HOST}/auth/local`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
+         identifier:email,
+         password:password
          
-         password:password,
-         identifier:email
         }),
       })
         .then(result => result.json())
@@ -46,8 +46,9 @@ export default function Login() {
     <div className={classes.parentLogin}>
       <div className={classes.alert}><Alert alert={done}/></div>
         <div className={classes.formlogin}  >
-            
-           <img  src="http://localhost:1337/uploads/icons8_new_view_80_f7a424678b.png"/>
+        {/* /uploads/icons8_new_view_80_1c0cbcc325.png
+        /uploads/icons8_new_view_80_f7a424678b.png */}
+           <img  src={"https://res.cloudinary.com/ditkixi88/image/upload/v1633754999/icons8_new_view_80_d0ff370d68.png"}/>
            <div className={classes.internal}>
 
            <div className={classes.email}>

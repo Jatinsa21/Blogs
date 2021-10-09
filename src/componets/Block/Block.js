@@ -10,7 +10,7 @@ export default function Block({data}) {
                   <div className="bBlock">
                   <div className="blockData">
                     <div className="bImg">
-                    {ell.BlogImg?<img src={'http://localhost:1337'+ell.BlogImg.url}/>:null}
+                    {ell.BlogImg?<img src={`${process.env.REACT_APP_HOST}${ell.BlogImg.url}`}/>:null}
                     </div>
                     <div className="bDetails">
                       <div className="bName">{ell.Heading}</div>

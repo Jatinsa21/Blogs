@@ -7,14 +7,14 @@ export default function Forgot() {
     
     function handleSubmit(){
 
-        fetch(`http://localhost:1337/auth/forgot-password`, {
+        fetch(`${process.env.REACT_APP_HOST}/auth/forgot-password`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
              
                 email:email,
                 url:
-                  'http:/localhost:1337/admin/plugins/users-permissions/auth/reset-password',
+                  `${process.env.REACT_APP_HOST}/admin/plugins/users-permissions/auth/reset-password`,
             }),
           })
           .then(response => {
@@ -29,7 +29,7 @@ export default function Forgot() {
      <>
      <div className={classes.parent}>
          <div className={classes.form}>
-             <img  src="http://localhost:1337/uploads/icons8_new_view_80_f7a424678b.png"/>
+             <img  src={"https://res.cloudinary.com/ditkixi88/image/upload/v1633754999/icons8_new_view_80_d0ff370d68.png"}/>
              <div  className={classes.internal}>
              <p className={classes.head}>Reset Password</p>
              <div className={classes.left}>
