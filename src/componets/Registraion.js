@@ -17,6 +17,7 @@ export default function Registration() {
   const [sameError,setSameError]=useState("");
   const [done,setDone]=useState("")
   const [valid,setValid]=useState(false)
+  const [mesg ,setMesg]=useState("")
   let userNameBool = false
   let emailBool = false
   let passwordBool=false
@@ -102,13 +103,14 @@ export default function Registration() {
         .then(result => result.json())
         .then(result => {
           if(result.jwt){
-            setDone("Done! so back to log in page")
+            setMesg("Done!")
+            setDone("so back to log in page")
             setUsername("")
             setPassword("")
             setConfirmPassword("")
             setEmail("")
           }else{
-            
+          setMesg("Error")
           setDone(result.message[0].messages[0].message)
             setLoading(false)
           }
@@ -125,7 +127,7 @@ export default function Registration() {
   return (
     <div className={classes.parentReg} >
            <div className={classes.alert}>
-        {done?<Alert alert={done}/>:null}</div>
+        {done?<Alert alert={done} Mesg={mesg}/>:null}</div>
       
         <div className={classes.formReg}>
             <img  src={"https://res.cloudinary.com/ditkixi88/image/upload/v1633754999/icons8_new_view_80_d0ff370d68.png"} />
