@@ -124,7 +124,8 @@ export default function Registration() {
   
   return (
     <div className={classes.parentReg} >
-      <div className={classes.alert}><Alert alert={done}/></div>
+           <div className={classes.alert}>
+        {done?<Alert alert={done}/>:null}</div>
       
         <div className={classes.formReg}>
             <img  src={"https://res.cloudinary.com/ditkixi88/image/upload/v1633754999/icons8_new_view_80_d0ff370d68.png"} />

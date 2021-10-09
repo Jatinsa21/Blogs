@@ -28,6 +28,7 @@ export default function Forgot() {
  return(
      <>
      <div className={classes.parent}>
+         
          <div className={classes.form}>
              <img  src={"https://res.cloudinary.com/ditkixi88/image/upload/v1633754999/icons8_new_view_80_d0ff370d68.png"}/>
              <div  className={classes.internal}>

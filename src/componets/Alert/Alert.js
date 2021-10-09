@@ -5,6 +5,7 @@ export default function Alert({alert}) {
     return (<>
         <div className={classes.main}>
             <div className={classes.alert}>
+                <h3>Error!</h3>
                 <p>{alert}</p>
             </div>
         </div>

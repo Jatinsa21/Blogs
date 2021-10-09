@@ -44,7 +44,8 @@ export default function Login() {
       }
   return (
     <div className={classes.parentLogin}>
-      <div className={classes.alert}><Alert alert={done}/></div>
+      <div className={classes.alert}>
+        {done?<Alert alert={done}/>:null}</div>
         <div className={classes.formlogin}  >
         {/* /uploads/icons8_new_view_80_1c0cbcc325.png
         /uploads/icons8_new_view_80_f7a424678b.png */}
