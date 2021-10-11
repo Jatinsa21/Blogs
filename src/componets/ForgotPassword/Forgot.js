@@ -44,7 +44,7 @@ export default function Forgot() {
                 <button type="submit" onClick={handleSubmit}  > Send Reset link </button>
             </div>
             <div className={classes.login}>
-                <span>Return to Sign-in page?</span> <Link to='/'>Click here</Link>
+                <span className={classes.span}>Return to Sign-in page?</span> <Link className={classes.forgotLink} to='/'>Click here</Link>
             </div>
             </div>
          </div>

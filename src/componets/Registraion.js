@@ -79,7 +79,7 @@ export default function Registration() {
     }
   })
   function handleSubmit() {
-    console.log("hs")
+  
     if (userNameBool && emailBool && passwordBool && confirmPassBool && samePassBool){
     
       fetch(`${process.env.REACT_APP_HOST}/auth/local/register`, {
@@ -95,15 +95,14 @@ export default function Registration() {
         .then(result => {
           if(result.jwt){
             setMesg("Done!")
-            setDone("so back to log in page")
+            setDone("Go back to log in page")
             setUsername("")
             setPassword("")
             setConfirmPassword("")
             setEmail("")
           }else{
           setMesg("Error")
-          setDone(result.message[0].messages[0].message)
-            
+          setDone(result.message[0].messages[0].message)            
           }
          
         })
