@@ -65,7 +65,7 @@ export const Home = () => {
                             <div className={classes.detalis}>
                               <div className={classes.head}>{ell.Heading}</div>
                               <div className={classes.description}>{ell.Description}</div>
-                              <div className={classes.open}><button>Reed full blog</button></div>
+                              <div className={classes.open}><button>Read full blog</button></div>
                               <div className={classes.mid}>
                                 <div className={classes.author}>{ell.Author}</div>
                                 <div className={classes.types}>{ell.Type}</div>
