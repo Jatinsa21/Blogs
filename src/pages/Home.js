@@ -38,20 +38,18 @@ export const Home = () => {
     },[])
 
     return (
-        <>
+        <><div className={classes.all}>
             
             <div className={classes.parent} >
                 <div className={classes.noch}>
                     <div className={classes.type}>
-                        <div className={classes.button}>
-                            <button onClick={setFilterAll} >All</button>
-                        </div>
-                        <div className={classes.button1} >
-                            <button onClick={setFilterTech}>Technology</button>
-                        </div>
-                        <div className={classes.button}>
-                            <button onClick={setFilterMarcket} >Marketing</button>
-                        </div>
+                        
+                            <button className={classes.btn1} onClick={setFilterAll} >All</button>
+                        
+                            <button className={classes.btn2} onClick={setFilterTech}>Technology</button>
+        
+                            <button className={classes.btn3}  onClick={setFilterMarcket} >Marketing</button>
+                        
                     </div>
                     <div className={classes.logout}>
                         <Link className={classes.logoutBtn} to='/'>
@@ -75,7 +73,9 @@ export const Home = () => {
                                <div className={classes.head}>{ell.Heading}</div>
                                <div className={classes.description}><p>{ell.Description}</p></div>
                                <div className={classes.bottom}>
-                               <div className={classes.open}><button>Read full blog</button></div>
+                               <div className={classes.open}>
+                                   <button>Read full blog</button>
+                                </div>
                                <div className={classes.mid}>
                                  <div className={classes.author}>{ell.Author}</div>
                                  <div className={classes.types}>{ell.Type}</div>
@@ -91,11 +91,11 @@ export const Home = () => {
                     </div>
 
                 </div>
-                {/* <div className={classes.end}>
-                    No more Results
-                </div> */}
+                <div className={classes.end}>
+                    No more Blogs Found
+                </div>
             </div>
-
+</div>
     </>
     )
 }
