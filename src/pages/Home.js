@@ -3,22 +3,31 @@ import classes from "./Home.module.css"
 import { useHistory ,Link} from "react-router-dom";
 
 export const Home = () => {
-    const [blog,setBlog] = useState([])
-    const[all,setAll]= useState([blog])
+    // const [blog,setBlog] = useState([])
+    const[all,setAll]= useState([])
     const [searchInput, setSearchInput]=useState("")
-    
+    const [filterName,setFilterName] = useState('All')
+    const filters = filterName === 'All' ? all : all.filter(el =>el.Type == filterName)
 
-    function setFilterTech(){
-        setAll(blog.filter(el =>el.Type == "Technology"))
-    }
-    function setFilterMarcket(){
-        setAll(blog.filter(el =>el.Type == "Marketing"))
-    }
-     function setFilterAll(){
-        setAll(blog)
-    }
+    // function setFilterTech(){
+    //     setAll(blog.filter(el =>el.Type == "Technology"))
+    // }
+    // function setFilterMarcket(){
+    //     setAll(blog.filter(el =>el.Type == "Marketing"))
+    // }
+    //  function setFilterAll(){
+    //     setAll(blog)
+    // }
+    // function setFilter(name){
+    //     if (name==="All"){
+    //         setAll(blog)
+    //     }
+    //     else {
+    //         setAll(blog.filter(el =>el.Type == name))
+    //     }
+    // }
 
-    const filterSearch = all.filter(el=>el.Heading?.toLowerCase().includes(searchInput?.toLowerCase()) )
+    const filterSearch = filters.filter(el=>el.Heading?.toLowerCase().includes(searchInput?.toLowerCase()) )
    
     useEffect(()=>{
         fetch(`${process.env.REACT_APP_HOST}/blogs`, {
@@ -28,7 +37,7 @@ export const Home = () => {
         .then(result => result.json())
         .then(result => {
             console.log(result)
-           setBlog(result)
+        //    setBlog(result)
            setAll(result)
         })
         .catch(e=>{
@@ -36,19 +45,32 @@ export const Home = () => {
         })
       
     },[])
+    const menu = [
+        {
+            name:"All"
+        },{
+            name:"Technology"
+        },{
+            name:"Marketing"
+        }
+    ]
 
     return (
-        <><div className={classes.all}>
+        <>
             
             <div className={classes.parent} >
                 <div className={classes.noch}>
                     <div className={classes.type}>
-                        
-                            <button className={classes.btn1} onClick={setFilterAll} >All</button>
+                        {
+                            menu.map((ele) => (
+                                <button className={`${classes.btn1} ${filterName === ele.name && classes.btnActive }`} onClick={()=>setFilterName(ele.name)} >{ele.name}</button>
+                            ))}
+
+                            {/* <button className={classes.btn1} onClick={setFilterAll} >All</button>
                         
                             <button className={classes.btn2} onClick={setFilterTech}>Technology</button>
         
-                            <button className={classes.btn3}  onClick={setFilterMarcket} >Marketing</button>
+                            <button className={classes.btn3}  onClick={setFilterMarcket} >Marketing</button> */}
                         
                     </div>
                     <div className={classes.logout}>
@@ -61,7 +83,7 @@ export const Home = () => {
                     <input className={classes.input} placeholder="Search blog here" onChange={e=>setSearchInput(e.target.value)}  value={searchInput} ></input>
                 </div>
                 <div className={classes.data}>
-                    <div className={classes.cards}>
+                    
                         {filterSearch.map((ell) => (
                             
                             ell ? (<>
@@ -88,14 +110,14 @@ export const Home = () => {
  
                         )
                         )}
-                    </div>
+                    
 
-                </div>
                 <div className={classes.end}>
                     No more Blogs Found
                 </div>
+                </div>
             </div>
-</div>
+
     </>
     )
 }
