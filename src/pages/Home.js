@@ -1,7 +1,6 @@
 import React,{useEffect,useState} from 'react'
 import classes from "./Home.module.css"
 import { useHistory ,Link} from "react-router-dom";
-import Main from './Main/Main';
 
 export const Home = () => {
    

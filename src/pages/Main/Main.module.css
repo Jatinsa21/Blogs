@@ -11,6 +11,24 @@
     background-color: #A40606;
     background-image: linear-gradient(315deg, #A40606 0%, #D98324 74%); 
 }
+.noch{
+    width: 100%;
+    padding-top: 10px;
+    display: flex;
+    flex-direction: row;
+    max-height: 30px;
+}
+.logout{
+  
+    display: flex;
+    justify-content: flex-end;
+    padding-top: 5px;
+    
+ }
+ .logoutBtn img{
+ 
+     height: 22px
+ }
 .heading{
     color: antiquewhite;
     font-size: 30px;
@@ -52,7 +70,7 @@
 
 }
 .content p{
-    background-color: aqua;
-    font-weight: 800;
+    color: beige;
+    font-weight: bolder;
     padding: 30px;
 }
