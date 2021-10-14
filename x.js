@@ -1,4 +1,4 @@
-{data.filter(el =>3< el.id< 7).map(ell => (
+{data.map(ell => (
     <div className="card">
      <div className="content">
        <div className="img">

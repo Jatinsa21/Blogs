@@ -1,6 +1,7 @@
 import React,{useEffect,useState} from 'react'
 import classes from "./Home.module.css"
 import { useHistory ,Link} from "react-router-dom";
+import Main from './Main/Main';
 
 export const Home = () => {
     // const [blog,setBlog] = useState([])
@@ -8,7 +9,18 @@ export const Home = () => {
     const [searchInput, setSearchInput]=useState("")
     const [filterName,setFilterName] = useState('All')
     const filters = filterName === 'All' ? all : all.filter(el =>el.Type == filterName)
-
+    const history = useHistory();
+  
+    function goMain(key) {
+    //   history.push("/main"),key;
+    history.push({ 
+        pathname: '/register',
+        state: {
+            response:key 
+          } 
+       });
+    }
+    // const [key,setKey] = useState("")
     // function setFilterTech(){
     //     setAll(blog.filter(el =>el.Type == "Technology"))
     // }
@@ -28,7 +40,7 @@ export const Home = () => {
     // }
 
     const filterSearch = filters.filter(el=>el.Heading?.toLowerCase().includes(searchInput?.toLowerCase()) )
-   
+
     useEffect(()=>{
         fetch(`${process.env.REACT_APP_HOST}/blogs`, {
         method: 'GET',
@@ -96,7 +108,7 @@ export const Home = () => {
                                <div className={classes.description}><p>{ell.Description}</p></div>
                                <div className={classes.bottom}>
                                <div className={classes.open}>
-                                   <button>Read full blog</button>
+                                   <button type="submit" onClick={()=> {goMain(ell.id)}} >Read full blog</button>
                                 </div>
                                <div className={classes.mid}>
                                  <div className={classes.author}>{ell.Author}</div>

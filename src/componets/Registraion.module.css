@@ -123,3 +123,25 @@
     justify-content: center;
     display: flex;
 }
+@media only screen and (max-width: 870px) {  
+  
+    .formReg{
+        
+        width: 60%;
+      
+    }
+    .internal{
+        
+        width: 90%;
+
+    }
+
+    .register{
+        
+      
+        display: flex;
+        flex-direction: column;
+        
+    }
+
+}
