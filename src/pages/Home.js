@@ -4,40 +4,13 @@ import { useHistory ,Link} from "react-router-dom";
 import Main from './Main/Main';
 
 export const Home = () => {
-    // const [blog,setBlog] = useState([])
+   
     const[all,setAll]= useState([])
     const [searchInput, setSearchInput]=useState("")
     const [filterName,setFilterName] = useState('All')
     const filters = filterName === 'All' ? all : all.filter(el =>el.Type == filterName)
     const history = useHistory();
-  
-    function goMain(key) {
-    //   history.push("/main"),key;
-    history.push({ 
-        pathname: '/register',
-        state: {
-            response:key 
-          } 
-       });
-    }
-    // const [key,setKey] = useState("")
-    // function setFilterTech(){
-    //     setAll(blog.filter(el =>el.Type == "Technology"))
-    // }
-    // function setFilterMarcket(){
-    //     setAll(blog.filter(el =>el.Type == "Marketing"))
-    // }
-    //  function setFilterAll(){
-    //     setAll(blog)
-    // }
-    // function setFilter(name){
-    //     if (name==="All"){
-    //         setAll(blog)
-    //     }
-    //     else {
-    //         setAll(blog.filter(el =>el.Type == name))
-    //     }
-    // }
+
 
     const filterSearch = filters.filter(el=>el.Heading?.toLowerCase().includes(searchInput?.toLowerCase()) )
 
@@ -48,8 +21,7 @@ export const Home = () => {
       })
         .then(result => result.json())
         .then(result => {
-            console.log(result)
-        //    setBlog(result)
+
            setAll(result)
         })
         .catch(e=>{
@@ -77,12 +49,6 @@ export const Home = () => {
                             menu.map((ele) => (
                                 <button className={`${classes.btn1} ${filterName === ele.name && classes.btnActive }`} onClick={()=>setFilterName(ele.name)} >{ele.name}</button>
                             ))}
-
-                            {/* <button className={classes.btn1} onClick={setFilterAll} >All</button>
-                        
-                            <button className={classes.btn2} onClick={setFilterTech}>Technology</button>
-        
-                            <button className={classes.btn3}  onClick={setFilterMarcket} >Marketing</button> */}
                         
                     </div>
                     <div className={classes.logout}>
@@ -108,7 +74,23 @@ export const Home = () => {
                                <div className={classes.description}><p>{ell.Description}</p></div>
                                <div className={classes.bottom}>
                                <div className={classes.open}>
-                                   <button type="submit" onClick={()=> {goMain(ell.id)}} >Read full blog</button>
+                               <Link
+                                    to={{
+                                        pathname: "/main",
+                                        search: "?sort=name",
+                                        hash: "#the-hash",
+                                        state: { pkey: ell.id ,
+                                            heading:ell.Heading ,
+                                            blogImg:ell.BlogImg.url ,
+                                            desc:ell.Description ,
+                                            author:ell.Author,
+                                            type:ell.Type ,
+                                            content:ell.Content
+                                            }
+                                      }}
+                                    >
+                                    Click here to read more
+                                    </Link>
                                 </div>
                                <div className={classes.mid}>
                                  <div className={classes.author}>{ell.Author}</div>

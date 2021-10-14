@@ -1,38 +1,41 @@
 import React,{useEffect,useState} from 'react';
 import classes from "./Main.module.css"
-
-function Main({key}) {
-    
-const id = 1;
-const[all,setAll]= useState([])
-
-useEffect(()=>{
-    fetch(`${process.env.REACT_APP_HOST}/blogs`, {
-    method: 'GET',
-    headers: { 'Content-Type': 'application/json' }
-  })
-    .then(result => result.json())
-    .then(result => {
-       
-  
-       setAll(result)
-    })
-    .catch(e=>{
-        console.log(e)
-    })
-  
-},[])
-console.log(key)
-
-    return (
-        <div>
-            {all.filter(el => el.id === key).map(ell => (
-               <div> {ell.Heading}
-               {ell.Blogimg}</div>
+import { useLocation } from 'react-router-dom'
 
 
 
-             ))}
+function Main() {
+
+        const location = useLocation()
+        const { pkey,heading,blogImg,desc,author,type,content } = location.state
+
+        return (
+            <div className={classes.parent}>
+                <div className={classes.heading}>
+                   {heading}
+                </div> 
+                <div className={classes.desc}>
+                    {desc}
+                </div>
+                <div className={classes.nameType}>
+                    <div className={classes.name}>
+                        {author}
+                    </div>
+                    <div className={classes.type}>
+                        {type}
+                    </div>
+                </div> 
+                <div className={classes.img}>
+                    <img src={blogImg}/>
+                </div>
+                <div className={classes.content}> 
+                    <p>
+                        {content} </p>
+                    
+                </div>
+                
+
+               
     </div>
     )
 }
