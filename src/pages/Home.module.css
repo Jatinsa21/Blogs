@@ -166,7 +166,8 @@ font-weight: bold;
         
         display: flex;
         flex-direction: column;
-
+        justify-content: center;
+        align-items: center;
     }
     .noch{
         display: flex;
@@ -177,10 +178,18 @@ font-weight: bold;
     }
 
     .input{
-        width: 80%;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        width: 100%;
+        padding-left: 0;
     }
     .data{ 
-        padding: 30px 0 30px 30px;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        padding: 30px 0  30px;
         padding-right: 0;
         margin-right: 0;
        width: 100%;
@@ -188,7 +197,7 @@ font-weight: bold;
     }
     .card{
     
-        margin: 20px 0 20px 20px;
+        margin: 20px 0 20px 0;
         max-width: 60%;
         flex-direction: column;
         
@@ -204,6 +213,7 @@ font-weight: bold;
         
         
     }
+ 
     .img img{
         border-radius: 20px;
         width: 100%;
