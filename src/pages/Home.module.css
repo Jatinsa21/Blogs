@@ -208,6 +208,7 @@ font-weight: bold;
         max-width: 60%;
         flex-direction: column;
         
+        
     }
    
 
@@ -219,6 +220,9 @@ font-weight: bold;
         display: flex;
         
         
+    }
+    .open{
+        padding-top: 10px;
     }
  
     .img img{
@@ -232,6 +236,15 @@ font-weight: bold;
         justify-content: center;
         align-items: center;
         display: flex;
+    }
+    .description{
+        overflow: hidden;
+        max-width: 25ch;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        padding-top: 15px;
+        font-size: 15px;
+    
     }
 
   }
