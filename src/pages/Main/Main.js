@@ -20,6 +20,7 @@ function Main() {
                    {heading}
                 </div> 
                 <div className={classes.center}>
+                    <div className centers>
                  <div className={classes.img}>
                     <img src={blogImg}/>
                 </div>
@@ -37,13 +38,13 @@ function Main() {
                <div className={classes.time}>
                    {time} <span>Read</span>
                </div> 
-               </div>
-
+</div>
                 <div className={classes.content}> 
                     <p>
                         {content} </p>
                     
                 </div>
+               </div>
                 
 
                

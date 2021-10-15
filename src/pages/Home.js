@@ -66,7 +66,7 @@ export const Home = () => {
                             ell ? (<>
                             <div className={classes.card}>
                              <div className={classes.img}>
-                                 {ell.BlogImg?<img src={ell.BlogImg.url}/>:null}
+                                 {ell.BlogImg?<img src={ell.BlogImg.url } width="800" height="350"/>:null}
                              </div>
                              <div className={classes.detalis}>
                                <div className={classes.head}>{ell.Heading}</div>
