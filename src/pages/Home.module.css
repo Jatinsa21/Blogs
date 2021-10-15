@@ -93,13 +93,18 @@
     
     
 }
-.img img{
+.image{
     border-radius: 20px;
     width: 100%;
     height: 100%;
     
 }
-
+.image img{
+    border-radius: 20px;
+    width: 100%;
+    height: 100%;
+    
+}
 .detalis{
     display: flex;
     flex-direction: column;
@@ -113,6 +118,10 @@
     font-size: 20px;
 
 }
+.hLink{
+    text-decoration: none;
+    color: black;
+}
 .description{
     overflow: hidden;
     max-width: 50ch;
@@ -125,6 +134,8 @@
 .open{
     
     font-size: 15px;
+    color: black;
+    
 }
 .open button{
     text-decoration: underline;

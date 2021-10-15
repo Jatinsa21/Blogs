@@ -65,11 +65,45 @@ export const Home = () => {
                             
                             ell ? (<>
                             <div className={classes.card}>
-                             <div className={classes.img}>
-                                 {ell.BlogImg?<img src={ell.BlogImg.url } width="800" height="350"/>:null}
+                             <div className={classes.img}><Link className={classes.image}
+                                    to={{
+                                        pathname: "/main",
+                                        search: "?sort=name",
+                                        hash: "#the-hash",
+                                        state: { pkey: ell.id ,
+                                            heading:ell.Heading ,
+                                            blogImg:ell.BlogImg.url ,
+                                            desc:ell.Description ,
+                                            author:ell.Author,
+                                            type:ell.Type ,
+                                            content:ell.Content,
+                                            time:ell.readTime
+                                            }
+                                      }}
+                                    >
+                             
+                                 {ell.BlogImg?<img src={ell.BlogImg.url } width="800" height="350"/>:null}</Link>
                              </div>
                              <div className={classes.detalis}>
-                               <div className={classes.head}>{ell.Heading}</div>
+                               <div className={classes.head}>
+                               <Link className={classes.hLink}
+                                    to={{
+                                        pathname: "/main",
+                                        search: "?sort=name",
+                                        hash: "#the-hash",
+                                        state: { pkey: ell.id ,
+                                            heading:ell.Heading ,
+                                            blogImg:ell.BlogImg.url ,
+                                            desc:ell.Description ,
+                                            author:ell.Author,
+                                            type:ell.Type ,
+                                            content:ell.Content,
+                                            time:ell.readTime
+                                            }
+                                      }}
+                                    >
+                                    
+                                    {ell.Heading}</Link></div>
                                <div className={classes.description}><p>{ell.Description}</p></div>
                                <div className={classes.bottom}>
                                <div className={classes.open}>
@@ -89,7 +123,7 @@ export const Home = () => {
                                             }
                                       }}
                                     >
-                                    Click here to read more
+                                    Reed full Blog
                                     </Link>
                                 </div>
                                <div className={classes.mid}>
