@@ -84,7 +84,8 @@ export const Home = () => {
                                             desc:ell.Description ,
                                             author:ell.Author,
                                             type:ell.Type ,
-                                            content:ell.Content
+                                            content:ell.Content,
+                                            time:ell.readTime
                                             }
                                       }}
                                     >
