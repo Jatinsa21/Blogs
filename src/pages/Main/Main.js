@@ -23,6 +23,7 @@ function Main() {
                     <div className centers>
                  <div className={classes.img}>
                     <img src={blogImg}/>
+                 
                 </div>
                 {/* <div className={classes.desc}>
                     {desc}
