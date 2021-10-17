@@ -1,8 +1,11 @@
 import React,{useEffect,useState} from 'react'
 import classes from "./Home.module.css"
 import { useHistory ,Link} from "react-router-dom";
+import Loading from '../componets/Loading/Loading';
+
 
 export const Home = () => {
+    const [loading,setLoading] = useState(false)
    
     const[all,setAll]= useState([])
     const [searchInput, setSearchInput]=useState("")
@@ -14,16 +17,18 @@ export const Home = () => {
     const filterSearch = filters.filter(el=>el.Heading?.toLowerCase().includes(searchInput?.toLowerCase()) )
 
     useEffect(()=>{
+        setLoading(true)
         fetch(`${process.env.REACT_APP_HOST}/blogs`, {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' }
       })
         .then(result => result.json())
         .then(result => {
-
+            setLoading(false)
            setAll(result)
         })
         .catch(e=>{
+            setLoading(false)
             console.log(e)
         })
       
@@ -37,11 +42,7 @@ export const Home = () => {
             name:"Marketing"
         }
     ]
-
-    return (
-        <>
-            
-            <div className={classes.parent} >
+                return loading? <div className={classes.loading} ><Loading/></div>:<div className={classes.parent} >
                 <div className={classes.noch}>
                     <div className={classes.type}>
                         {
@@ -66,19 +67,8 @@ export const Home = () => {
                             ell ? (<>
                             <div className={classes.card}>
                              <div className={classes.img}><Link className={classes.image}
-                                    to={{
-                                        pathname: "/main",
-                                        search: "?sort=name",
-                                        hash: "#the-hash",
-                                        state: { pkey: ell.id ,
-                                            heading:ell.Heading ,
-                                            blogImg:ell.BlogImg.url ,
-                                            desc:ell.Description ,
-                                            author:ell.Author,
-                                            type:ell.Type ,
-                                            content:ell.Content,
-                                            time:ell.readTime
-                                            }
+                                     to={{
+                                        pathname: `/main/${ell.id}`,
                                       }}
                                     >
                              
@@ -88,18 +78,7 @@ export const Home = () => {
                                <div className={classes.head}>
                                <Link className={classes.hLink}
                                     to={{
-                                        pathname: "/main",
-                                        search: "?sort=name",
-                                        hash: "#the-hash",
-                                        state: { pkey: ell.id ,
-                                            heading:ell.Heading ,
-                                            blogImg:ell.BlogImg.url ,
-                                            desc:ell.Description ,
-                                            author:ell.Author,
-                                            type:ell.Type ,
-                                            content:ell.Content,
-                                            time:ell.readTime
-                                            }
+                                        pathname: `/main/${ell.id}`,
                                       }}
                                     >
                                     
@@ -108,19 +87,8 @@ export const Home = () => {
                                <div className={classes.bottom}>
                                <div className={classes.open}>
                                <Link
-                                    to={{
-                                        pathname: "/main",
-                                        search: "?sort=name",
-                                        hash: "#the-hash",
-                                        state: { pkey: ell.id ,
-                                            heading:ell.Heading ,
-                                            blogImg:ell.BlogImg.url ,
-                                            desc:ell.Description ,
-                                            author:ell.Author,
-                                            type:ell.Type ,
-                                            content:ell.Content,
-                                            time:ell.readTime
-                                            }
+                                     to={{
+                                        pathname: `/main/${ell.id}`,
                                       }}
                                     >
                                     Reed full Blog
@@ -146,6 +114,6 @@ export const Home = () => {
                 </div>
             </div>
 
-    </>
-    )
+    
+    
 }

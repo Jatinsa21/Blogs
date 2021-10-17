@@ -34,6 +34,7 @@ export default function Login() {
         .then(result => {
             if(result.jwt){
               goHome()
+              
         }else{
           setDone("Invalid Details" )
         }
