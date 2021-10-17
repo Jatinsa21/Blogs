@@ -33,7 +33,7 @@ export default function Registration() {
       userNameBool   = true   
        setUsernameError("")
     }
-    console.log(usernameError)
+    
     if(email === ""){
       emailBool = false
       setEmailError("Email can't be empty")
@@ -44,15 +44,28 @@ export default function Registration() {
       
       setEmailError("")}
  
-    if(password===""){
-      passwordBool= false     
+      if(password===""){
+        passwordBool= false     
+        
+        setPasswordError("Password  can't be empty")
+        
+      }
+      else if(password!== ""){
+        var patt = new RegExp(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/);
+        var res = patt.test(password);
+        if(res){
+          passwordBool= true      
+          setPasswordError("")
+        }else if(!res){
+          
+          passwordBool= false  
+          setPasswordError("password must be at least 8 characters,1 letter and 1 digit");
+        }
+      
 
-     setPasswordError("Password  can't be empty")
 
     }
-    else if(password!== ""){
-      passwordBool= true      
-      setPasswordError("")}
+
     if(confirmPassword===""){
       confirmPassBool = false
 
