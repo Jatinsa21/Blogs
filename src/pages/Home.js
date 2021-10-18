@@ -55,7 +55,7 @@ export const Home = () => {
                     </div>
                     <div className={classes.logout}>
                         <Link className={classes.logoutBtn} to='/'>
-                            <img src="https://res.cloudinary.com/ditkixi88/image/upload/v1634018656/transparent_web_interface_icons_icon_logout_icon_5f8bbf9bc2f138_8715297616029940757985_18b1071046.png" />
+                            <img src="https://res.cloudinary.com/ditkixi88/image/upload/v1634537161/Icons8_Windows_8_User_Interface_Logout_5bf970826f.ico" />
                         </Link>
                     </div>
                 </div>
