@@ -26,6 +26,8 @@ export const Home = () => {
         .then(result => {
             setLoading(false)
            setAll(result)
+          
+
         })
         .catch(e=>{
             setLoading(false)
@@ -83,10 +85,12 @@ export const Home = () => {
                                     >
                                     
                                     {ell.Heading}</Link></div>
-                               <div className={classes.description}><p>{ell.Description}</p></div>
+                               <div className={classes.description}>
+                                   <p>{ell.Description}</p>
+                                   </div>
                                <div className={classes.bottom}>
                                <div className={classes.open}>
-                               <Link
+                               <Link className={classes.oLink}
                                      to={{
                                         pathname: `/main/${ell.id}`,
                                       }}
@@ -95,12 +99,30 @@ export const Home = () => {
                                     </Link>
                                 </div>
                                <div className={classes.mid}>
-                                 <div className={classes.author}>{ell.Author}</div>
-                                 <div className={classes.types}>{ell.Type}</div>
-                               </div>
-                               <div className={classes.time}>{ell.readTime} <span>read</span></div>
-                                 </div>
+                                    <div className={classes.author}>
+                                        <div className={classes.aImage}>
+                                            <img src={ell.authorImage.url} />
+                                        </div>
+                                        <div className={classes.adetails}>
+                                            <div className={classes.aName}>
+                                                {ell.Author}
+                                             </div>
+                                            <div className={classes.time}>
+                                                {ell.readTime} <span>read</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className={classes.types}>
+                                        {ell.Type}
+                                    </div>
+                                </div>
+                            </div>
                              </div>
+                             </div>
+
+                             <div className={classes.line}>
+                                 <hr></hr>
+                                 
                              </div>
                             </>):null
  

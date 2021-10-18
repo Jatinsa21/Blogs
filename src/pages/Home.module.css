@@ -10,6 +10,9 @@
     background-color: #A40606;
     background-image: linear-gradient(315deg, #A40606 0%, #D98324 74%); 
 }
+.data{
+    min-height: 100vh;
+}
 .noch{
     width: 100%;
     padding-top: 30px;
@@ -70,23 +73,41 @@
 
 .data{
     padding: 30px;
-    min-height: 100vh;
+  
+    width: 70%;
 
 }
 
 .card{
     
-    min-height: 200px;
+    min-height: 250px;
     display: flex;
-    background-color: azure; 
+    background: transparent; 
     margin: 20px;
-    border-radius: 20px;
+    width: 100%;
     
 
     
 }
+.line{
+    
+    
+}
+.line hr{
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+    height: 2px;
+    background: rgba(99, 44, 250, 0.17);
+    border-width: 0px;
+    border-style: solid;
+    border-color: currentcolor;
+}
+
+
+
 .img{
-    width: 300px;
+    width: 40%;
     justify-content: center;
     align-items: center;
     display: flex;
@@ -94,78 +115,98 @@
     
 }
 .image{
-    border-radius: 20px;
+    
     width: 100%;
     height: 100%;
     
 }
 .image img{
-    border-radius: 20px;
+    
     width: 100%;
     height: 100%;
     
 }
 .detalis{
+    width: 60%;
     display: flex;
     flex-direction: column;
     margin: 15px;
 }
 .head{
-    overflow: hidden;
-    max-width: 40ch;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    font-size: 20px;
-
+    font-size: 22px;
+    font-weight: bolder;
 }
 .hLink{
     text-decoration: none;
-    color: black;
+    color: white;
 }
 .description{
-    overflow: hidden;
-    max-width: 50ch;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+    color: rgba(0, 0, 0, 0.53);
     padding-top: 15px;
     font-size: 15px;
 
 }
 .open{
-    
-    font-size: 15px;
-    color: black;
-    
+    padding-top: 20px;
+    padding-bottom: 10px;
+   
 }
-.open button{
-    text-decoration: underline;
-    border: none;
-    font-size: 15px;
+.oLink{
+    font-size: 16px;
     font-weight: bold;
-    
+    color: white;
 }
+
 .mid{
     padding-top: 8px;
     display: flex;
+    flex-direction: row;
     font-size: 15px;
     justify-content: space-between
 }
+
+.aImage{
+    height: 40px;
+    width: 40px;
+    padding-right: 10px;
+    
+}
+.aImage img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+
 .author{
     
+    display: flex;
+    flex-direction: row;
     font-size: 15px;
+}
+.aDetails{
+    padding-left: 10px;
+}
+.aName{
+    font-size: 16px;
+    font-weight: bold;
 }
 .type{
-    font-size: 15px;
+    font-size: 17px;
 }
 .time{
-    padding-top: 8px;
-    font-size: 15px;
+
+    padding-top: 5px;
+    color:rgba(0, 0, 0, 0.53);
+    font-size: 14px;
     
 }
 .bottom{
     margin-top: auto;
 }
 .end{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 font-size: 25px;
 color: blanchedalmond;
 font-weight: bold;
@@ -198,6 +239,9 @@ font-weight: bold;
     }
     .type{
         padding-left: 0px;
+    }
+    .detalis{
+        width: 100%;
     }
 
     .input{
@@ -246,7 +290,7 @@ font-weight: bold;
  
     .img img{
         border-radius: 20px;
-        width: 100%;
+        
         height: 100%;
         
     }
