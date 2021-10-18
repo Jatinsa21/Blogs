@@ -11,7 +11,6 @@ export const Home = () => {
     const [searchInput, setSearchInput]=useState("")
     const [filterName,setFilterName] = useState('All')
     const filters = filterName === 'All' ? all : all.filter(el =>el.Type == filterName)
-    const history = useHistory();
 
 
     const filterSearch = filters.filter(el=>el.Heading?.toLowerCase().includes(searchInput?.toLowerCase()) )
@@ -51,8 +50,14 @@ export const Home = () => {
                             menu.map((ele) => (
                                 <button className={`${classes.btn1} ${filterName === ele.name && classes.btnActive }`} onClick={()=>setFilterName(ele.name)} >{ele.name}</button>
                             ))}
+                       {/* <select>  {
+                            menu.map((ele) => (
+                                <option className={`${classes.btn1} ${filterName === ele.name && classes.btnActive }`} onCl={()=>setFilterName(ele.name)} >{ele.name}</option>
+                            ))
+                            }</select> */}
                         
                     </div>
+
                     <div className={classes.logout}>
                         <Link className={classes.logoutBtn} to='/'>
                             <img src="https://res.cloudinary.com/ditkixi88/image/upload/v1634537161/Icons8_Windows_8_User_Interface_Logout_5bf970826f.ico" />

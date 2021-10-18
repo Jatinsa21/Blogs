@@ -33,6 +33,7 @@
 .heading{
     color: antiquewhite;
     font-size: 30px;
+    font-weight: bolder;
     padding-top: 30px;
 
 
@@ -55,13 +56,56 @@
     flex-direction: column;
     
 }
+.mid{
+    padding-top: 15px;
+    display: flex;
+    flex-direction: row;
+    font-size: 15px;
+    justify-content: space-between
+}
 
-.nameType{
+.aImage{
+    height: 50px;
+    width: 50px;
+    padding-right: 10px;
+    
+}
+.aImage img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+
+.author{
+    
+    display: flex;
+    flex-direction: row;
+    font-size: 15px;
+}
+.aDetails{
+    padding-left: 10px;
+}
+.aName{
+    font-size: 16px;
+    font-weight: bold;
+}
+.type{
+    font-size: 20px;
+}
+.time{
+
+    padding-top: 5px;
+    color: rgba(0, 0, 0, 0.53);
+    font-size: 14px;
+    
+}
+
+/* .nameType{
     padding-top: 20px;
     display: flex;
     justify-items: center;
     color: antiquewhite;
-}
+} */
 .loading{
     width: 100%;
     height: 100vh;
@@ -71,27 +115,31 @@
     background-color: #A40606;
     background-image: linear-gradient(315deg, #A40606 0%, #D98324 74%); 
 }
-.name{
-    
+/* .name{
+    font-size: 16px;
     margin-right: auto;
+    font-weight: bold;
 }
 .type{
     margin-left: auto;
+    font-size: 17px;
 
 }
 .time{
+    color: rgba(0, 0, 0, 0.53);
     padding-top: 10px;
-}
+} */
 .content{padding-top: 10px;
     width: 80%;
     align-items: center;
     display: flex;
+   
     
     
 }
 .content p{
-    color: beige;
-    font-weight: bolder;
+    color: white;
+ 
     
     line-height: 1.6;
     font-size: 18px;
@@ -121,6 +169,27 @@
     padding-left: 10px;
     align-content: center;
     padding-right: 10px;
+}
+.pImg :hover{
+    cursor: pointer;
+
+}
+.pImg{
+    height: 120px;
+
+}
+.over{
+    position: absolute;
+    height: 120px;
+   
+    background: turquoise;
+}
+.pImg img {
+    height: 120px;
+   
+}
+.pLink button:hover{
+    cursor: pointer;
 }
 .pLink button{
     color: rgb(255, 255, 255);
@@ -154,12 +223,29 @@
         
     }
     .heading{
+        width: 80%;
+     text-align: center;
         font-size: 25px;
-        padding: 30px 0 0 20px;
+       
+    }
+    .pImg{
+        height: auto;
+    }
+    .pLink{
+       align-content: flex-start;
     }
     .content{
         width: 90%;
     }
+    .pImg img {
+        height: auto;
+        width: 200px;
+        
+    }
+    .prev{
+        flex-wrap: wrap;
+    }
+
  
 }
 @media only screen and (min-width: 1200px) {  

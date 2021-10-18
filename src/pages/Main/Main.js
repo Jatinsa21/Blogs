@@ -121,17 +121,27 @@ function Main() {
                 {/* <div className={classes.desc}>
                     {desc}
                 </div> */}
-                <div className={classes.nameType}>
-                    <div className={classes.name}>
-                        {all.Author}
-                    </div>
-                    <div className={classes.type}>
-                        {all.Type}
-                    </div>
-                </div> 
-               <div className={classes.time}>
-                   {all.readTime} <span>Read</span>
-               </div> 
+                               <div className={classes.mid}>
+                                    <div className={classes.author}>
+                                        <div className={classes.aImage}>
+                                        {next.BlogImg&& <img src={all.authorImage.url} />}
+                                        </div>
+                                        <div className={classes.adetails}>
+                                            <div className={classes.aName}>
+                                                {all.Author}
+                                             </div>
+                                            <div className={classes.time}>
+                                                {all.readTime} <span>read</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className={classes.types}>
+                                        {all.Type}
+                                    </div>
+                                </div>
+
+
+
 </div>
                 <div className={classes.content}> 
                     <p>
@@ -142,8 +152,10 @@ function Main() {
                 <div className={classes.prev}>
                    {gotP && <div className={classes.previous}>
                         <div className={classes.pImg}>
-                        {prev.BlogImg&& <img src={prev.BlogImg.url} height="100px"/>}
+                        {prev.BlogImg&& <img src={prev.BlogImg.url} onClick={loadP}/>}
+                       <div className={classes.over}></div>
                         </div>
+
                         <div className={classes.pLink}>
                         <button onClick={loadP}>
                             View Previous Blog  </button>
@@ -155,7 +167,7 @@ function Main() {
                             View Next Blog  </button>
                         </div>
                         <div className={classes.pImg}>
-                        {next.BlogImg&& <img src={next.BlogImg.url} height="100px"/>}
+                        {next.BlogImg&& <img src={next.BlogImg.url} onClick={loadN}/>}
                         </div>
                     </div>}
                 </div>
