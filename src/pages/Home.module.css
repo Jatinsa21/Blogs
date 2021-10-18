@@ -173,7 +173,9 @@
     height: 100%;
     border-radius: 50%;
 }
-
+.type2{
+    display: none;
+}
 .author{
     
     display: flex;
@@ -233,9 +235,6 @@ font-weight: bold;
     .noch{
         display: flex;
 
-    }
-    .type{
-        padding-left: 0px;
     }
     .detalis{
         width: 100%;
@@ -307,6 +306,29 @@ font-weight: bold;
        
     
     }
+    .type{
+        display: none;
+    
+    }
+    .type2 {
+
+       width: 100%;
+        display: flex;
+    justify-content: center;
+        
+    }
+    .logout{
+        margin-left: auto;
+        height: 30px;
+    }
+    .type2 select {
+        width: 50%;
+        height: 30px;
+        background:#ffb8b8;
+        font-size: 16px;
+        outline: none;
+        border: none;
+    }
   
   }
 
@@ -314,6 +336,12 @@ font-weight: bold;
   .mid{
     flex-direction: column;
 }
+.noch{
+    display: flex;
+    
+
+}
+
 .types{
     padding-top: 10px;
 }

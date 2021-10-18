@@ -50,14 +50,17 @@ export const Home = () => {
                             menu.map((ele) => (
                                 <button className={`${classes.btn1} ${filterName === ele.name && classes.btnActive }`} onClick={()=>setFilterName(ele.name)} >{ele.name}</button>
                             ))}
-                       {/* <select>  {
-                            menu.map((ele) => (
-                                <option className={`${classes.btn1} ${filterName === ele.name && classes.btnActive }`} onCl={()=>setFilterName(ele.name)} >{ele.name}</option>
-                            ))
-                            }</select> */}
                         
                     </div>
-
+                     <div className={classes.type2}>  <select onChange={(e)=>{
+                           const selected=e.target.value;
+                           setFilterName(selected)
+                       }} >  {
+                            menu.map((ele) => (
+                                <option className={`${classes.btn1} ${filterName === ele.name && classes.btnActive }`} value={ele.name}  >{ele.name}</option>
+                            ))
+                            }</select>
+                        </div>
                     <div className={classes.logout}>
                         <Link className={classes.logoutBtn} to='/'>
                             <img src="https://res.cloudinary.com/ditkixi88/image/upload/v1634537161/Icons8_Windows_8_User_Interface_Logout_5bf970826f.ico" />
