@@ -11,20 +11,27 @@ export const Home = () => {
     const [searchInput, setSearchInput]=useState("")
     const [filterName,setFilterName] = useState('All')
     const filters = filterName === 'All' ? all : all.filter(el =>el.Type == filterName)
-
-
+    const [currentPage,setCurrentPage] = useState(1)
+    const [renderPerPage,setRenderPerPage] = useState(3)
+    const [pageNumbers,setPageNumbers] = useState([])
     const filterSearch = filters.filter(el=>el.Heading?.toLowerCase().includes(searchInput?.toLowerCase()) )
+    function handleClick(event){
+        setCurrentPage(event.target.id)
 
+    }  
     useEffect(()=>{
         setLoading(true)
         fetch(`${process.env.REACT_APP_HOST}/blogs`, {
-        method: 'GET',
-        headers: { 'Content-Type': 'application/json' }
-      })
+            method: 'GET',
+            headers: { 'Content-Type': 'application/json' }
+             })
         .then(result => result.json())
         .then(result => {
             setLoading(false)
-           setAll(result)
+            setAll(result)
+        for (let i = 1; i <= Math.ceil(result.length / renderPerPage); i++) {
+            setPageNumbers(prev=>[...prev,i])
+            }
           
 
         })
@@ -34,6 +41,78 @@ export const Home = () => {
         })
       
     },[])
+    function previous(){
+        setCurrentPage(currentPage-1)
+    }
+    function next(){
+        setCurrentPage(currentPage+1)
+    }
+    const indexOfLastBlog = currentPage * renderPerPage;
+    const indexOfFirstBlog = indexOfLastBlog - renderPerPage;
+    const current = filterSearch.slice(indexOfFirstBlog, indexOfLastBlog);
+
+    const renderBlogs = current.map((ell, index) => {
+      return ell ? (<>
+        <div className={classes.card}>
+            <div className={classes.img}>
+                <Link className={classes.image}
+                 to={{pathname: `/main/${ell.id}`,}}>
+                {ell.BlogImg?<img src={ell.BlogImg.url } />:null}</Link>
+            </div>
+            <div className={classes.detalis}>
+                <div className={classes.head}>
+                    <Link className={classes.hLink}
+                        to={{pathname: `/main/${ell.id}`,}}>
+                    {ell.Heading}</Link></div>
+            <div className={classes.description}>
+               <p>{ell.Description}</p>
+               </div>
+            <div className={classes.bottom}>
+                <div className={classes.open}>
+                     <Link className={classes.oLink}
+                        to={{ pathname: `/main/${ell.id}`,}}>
+                         Reed full Blog
+                    </Link>
+                </div>
+           <div className={classes.mid}>
+                <div className={classes.author}>
+                    <div className={classes.aImage}>
+                        <img src={ell.authorImage.url} />
+                    </div>
+                    <div className={classes.adetails}>
+                        <div className={classes.aName}>
+                            {ell.Author}
+                         </div>
+                        <div className={classes.time}>
+                            {ell.readTime} <span>read</span>
+                        </div>
+                    </div>
+                </div>
+                <div className={classes.types}>
+                    {ell.Type}
+                </div>
+            </div>
+        </div>
+         </div>
+         </div>
+         <div className={classes.line}>
+             <hr></hr>
+             
+         </div>
+        </>):null;
+    });
+    const renderPageNumbers = pageNumbers.map(number => {
+       
+        return (
+            <button className={`${number === currentPage? classes.btnActive :null}`}
+            
+            key={number}
+            id={number}
+            onClick={handleClick} >  
+                {number}   
+            </button>
+        );
+      });
     const menu = [
         {
             name:"All"
@@ -43,24 +122,24 @@ export const Home = () => {
             name:"Marketing"
         }
     ]
-                return loading? <div className={classes.loading} ><Loading/></div>:<div className={classes.parent} >
+        return loading? <div className={classes.loading} ><Loading/></div>:<div className={classes.parent} >
                 <div className={classes.noch}>
                     <div className={classes.type}>
                         {
                             menu.map((ele) => (
-                                <button className={`${classes.btn1} ${filterName === ele.name && classes.btnActive }`} onClick={()=>setFilterName(ele.name)} >{ele.name}</button>
+                                <button className={`${filterName === ele.name && classes.btnActive }`} onClick={()=>setFilterName(ele.name)} >{ele.name}</button>
                             ))}
                         
                     </div>
                      <div className={classes.type2}>  <select onChange={(e)=>{
                            const selected=e.target.value;
                            setFilterName(selected)
-                       }} >  {
+                                }} >  {
                             menu.map((ele) => (
-                                <option className={`${classes.btn1} ${filterName === ele.name && classes.btnActive }`} value={ele.name}  >{ele.name}</option>
+                                <option  value={ele.name}  >{ele.name}</option>
                             ))
-                            }</select>
-                        </div>
+                        }</select>
+                    </div>
                     <div className={classes.logout}>
                         <Link className={classes.logoutBtn} to='/'>
                             <img src="https://res.cloudinary.com/ditkixi88/image/upload/v1634537161/Icons8_Windows_8_User_Interface_Logout_5bf970826f.ico" />
@@ -72,75 +151,14 @@ export const Home = () => {
                 </div>
                 <div className={classes.data}>
                     
-                        {filterSearch.map((ell) => (
-                            
-                            ell ? (<>
-                            <div className={classes.card}>
-                             <div className={classes.img}><Link className={classes.image}
-                                     to={{
-                                        pathname: `/main/${ell.id}`,
-                                      }}
-                                    >
-                             
-                                 {ell.BlogImg?<img src={ell.BlogImg.url } width="800" height="350"/>:null}</Link>
-                             </div>
-                             <div className={classes.detalis}>
-                               <div className={classes.head}>
-                               <Link className={classes.hLink}
-                                    to={{
-                                        pathname: `/main/${ell.id}`,
-                                      }}
-                                    >
-                                    
-                                    {ell.Heading}</Link></div>
-                               <div className={classes.description}>
-                                   <p>{ell.Description}</p>
-                                   </div>
-                               <div className={classes.bottom}>
-                               <div className={classes.open}>
-                               <Link className={classes.oLink}
-                                     to={{
-                                        pathname: `/main/${ell.id}`,
-                                      }}
-                                    >
-                                    Reed full Blog
-                                    </Link>
-                                </div>
-                               <div className={classes.mid}>
-                                    <div className={classes.author}>
-                                        <div className={classes.aImage}>
-                                            <img src={ell.authorImage.url} />
-                                        </div>
-                                        <div className={classes.adetails}>
-                                            <div className={classes.aName}>
-                                                {ell.Author}
-                                             </div>
-                                            <div className={classes.time}>
-                                                {ell.readTime} <span>read</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className={classes.types}>
-                                        {ell.Type}
-                                    </div>
-                                </div>
-                            </div>
-                             </div>
-                             </div>
-
-                             <div className={classes.line}>
-                                 <hr></hr>
-                                 
-                             </div>
-                            </>):null
- 
-                        )
-                        )}
-                    
-
-                <div className={classes.end}>
-                    No more Blogs Found
-                </div>
+                       {renderBlogs}
+                       <div className={classes.list}>
+                           {currentPage!=1 && <button className={classes.jump} onClick={previous}>Previous page</button>}
+                           
+                 <div className={classes.list2}> {renderPageNumbers} </div>  
+                    {currentPage!=pageNumbers.length && <button className={classes.jump} onClick={next}>Next page</button>}
+                    </div>
+            
                 </div>
             </div>
 

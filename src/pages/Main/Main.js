@@ -91,9 +91,9 @@ function Main() {
           })
             .then(result => result.json())
             .then(result => {
-                setLoading(false)
                 setGotN(true)
-               setNext(result)
+                setNext(result)
+                setLoading(false)
                console.log(result)
             })
             .catch(e=>{
