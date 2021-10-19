@@ -91,9 +91,9 @@ function Main() {
           })
             .then(result => result.json())
             .then(result => {
-                setGotN(true)
-                setNext(result)
                 setLoading(false)
+                setGotN(true)
+               setNext(result)
                console.log(result)
             })
             .catch(e=>{
@@ -124,7 +124,7 @@ function Main() {
                                <div className={classes.mid}>
                                     <div className={classes.author}>
                                         <div className={classes.aImage}>
-                                        {next.BlogImg&& <img src={all.authorImage.url} />}
+                                        {all.BlogImg&& <img src={all.authorImage.url} />}
                                         </div>
                                         <div className={classes.adetails}>
                                             <div className={classes.aName}>
