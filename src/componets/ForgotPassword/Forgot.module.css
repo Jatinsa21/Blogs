@@ -3,6 +3,7 @@
     margin: 0;
 }
 .parent{
+    font-family: "Poppins", sans-serif;
     width: 100%;
     height: 100vh;
     display: flex;

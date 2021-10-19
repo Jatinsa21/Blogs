@@ -1,9 +1,10 @@
 .loader {
     border: 16px solid #f3f3f3; /* Light grey */
-    border-top: 16px solid #A40606;; /* Blue */
+    border-top: 16px solid #0026ff;; 
     border-radius: 50%;
     width: 120px;
     height: 120px;
+    font-family: "Poppins", sans-serif;
     animation: spin 2s linear infinite;
   }
   

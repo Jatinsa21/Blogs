@@ -94,7 +94,7 @@ function Main() {
                 setLoading(false)
                 setGotN(true)
                setNext(result)
-               console.log(result)
+               
             })
             .catch(e=>{
                 setLoading(false)

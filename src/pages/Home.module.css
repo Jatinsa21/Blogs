@@ -3,6 +3,7 @@
     margin: 0;
 }
 .parent{
+    font-family: "Poppins", sans-serif;
     width: 100%;
     align-items: center;
     display: flex;
@@ -398,12 +399,17 @@ font-weight: bold;
     font-size: 20px;
     display: flex;
     padding-top:5px;
+    height: 40px;
     
         
     }
+
     .logout{
         margin-left: auto;
-        height: 30px;
+        height: 40px;
+    }
+    .logout img {
+        height: 40px;
     }
     .list{
         flex-direction: column;
@@ -416,7 +422,7 @@ font-weight: bold;
     }
     .type2 select {
        height: 100%;
-        
+        width: 60%;
         background:transparent;
         font-size: 16px;
         outline: none;
