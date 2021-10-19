@@ -45,7 +45,7 @@ export const Home = () => {
         setCurrentPage(currentPage-1)
     }
     function next(){
-        setCurrentPage(currentPage+1)
+        setCurrentPage(currentPage + 1)
     }
     const indexOfLastBlog = currentPage * renderPerPage;
     const indexOfFirstBlog = indexOfLastBlog - renderPerPage;
@@ -71,7 +71,7 @@ export const Home = () => {
                 <div className={classes.open}>
                      <Link className={classes.oLink}
                         to={{ pathname: `/main/${ell.id}`,}}>
-                         Reed full Blog
+                         Read full Blog
                     </Link>
                 </div>
            <div className={classes.mid}>
@@ -104,7 +104,7 @@ export const Home = () => {
     const renderPageNumbers = pageNumbers.map(number => {
        
         return (
-            <button className={`${number === currentPage? classes.btnActive :null}`}
+            <button className={`${number === currentPage? classes.btnActives :classes.btnNot}`}
             
             key={number}
             id={number}
@@ -152,12 +152,11 @@ export const Home = () => {
                 <div className={classes.data}>
                     
                        {renderBlogs}
-                       <div className={classes.list}>
-                           {currentPage!=1 && <button className={classes.jump} onClick={previous}>Previous page</button>}
-                           
-                 <div className={classes.list2}> {renderPageNumbers} </div>  
-                    {currentPage!=pageNumbers.length && <button className={classes.jump} onClick={next}>Next page</button>}
-                    </div>
+                       <div className={classes.pages}>
+                         <div>   {currentPage!=1 && <button className={classes.jump} onClick={previous}>Previous page</button>}</div> 
+                             <div > {renderPageNumbers} </div>  
+                         <div>  {currentPage!=pageNumbers.length && <button className={classes.jump} onClick={next}>Next page</button>}</div> 
+                         </div>
             
                 </div>
             </div>
