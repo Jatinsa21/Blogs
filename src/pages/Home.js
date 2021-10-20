@@ -16,9 +16,10 @@ export const Home = () => {
     const [pageNumbers,setPageNumbers] = useState([])
     const filterSearch = filters.filter(el=>el.Heading?.toLowerCase().includes(searchInput?.toLowerCase()) )
     function handleClick(event){
-        setCurrentPage(event.target.id)
+        setCurrentPage (event.target.id)
 
     }  
+    console.log(currentPage)
     useEffect(()=>{
         setLoading(true)
         fetch(`${process.env.REACT_APP_HOST}/blogs`, {
@@ -42,10 +43,10 @@ export const Home = () => {
       
     },[])
     function previous(){
-        setCurrentPage(currentPage-1)
+        setCurrentPage(parseInt(currentPage)-1)
     }
     function next(){
-        setCurrentPage(currentPage + 1)
+        setCurrentPage(parseInt(currentPage) + 1)
     }
     const indexOfLastBlog = currentPage * renderPerPage;
     const indexOfFirstBlog = indexOfLastBlog - renderPerPage;
@@ -104,15 +105,19 @@ export const Home = () => {
     const renderPageNumbers = pageNumbers.map(number => {
        
         return (
-            <button className={`${number === currentPage? classes.btnActives :classes.btnNot}`}
+            <button className={`${number == currentPage? classes.btnActives :classes.btnNot}`}
             
-            key={number}
-            id={number}
+            key={parseInt(number)}
+            id={parseInt(number)}
             onClick={handleClick} >  
-                {number}   
+                {parseInt(number)}  
+
             </button>
         );
       });
+    function removeJwt(){
+        localStorage.clear()
+    }
     const menu = [
         {
             name:"All"
@@ -140,7 +145,7 @@ export const Home = () => {
                             ))
                         }</select>
                     </div>
-                    <div className={classes.logout}>
+                    <div className={classes.logout} onClick={removeJwt}>
                         <Link className={classes.logoutBtn} to='/'>
                             <img src="https://res.cloudinary.com/ditkixi88/image/upload/v1634537161/Icons8_Windows_8_User_Interface_Logout_5bf970826f.ico" />
                         </Link>

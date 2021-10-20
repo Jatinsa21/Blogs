@@ -18,7 +18,7 @@ export default function Login() {
     }
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
+    let jwt = null;
   function handleSubmit(){
 
     fetch(`${process.env.REACT_APP_HOST}/auth/local`, {
@@ -33,12 +33,16 @@ export default function Login() {
         .then(result => result.json())
         .then(result => {
             if(result.jwt){
-              goHome()
-              
+              localStorage.setItem("key",JSON.stringify(result.jwt))
+              jwt =  result.jwt
+              if(jwt){
+                goHome()
+              }  
         }else{
           setDone("Invalid Details" )
         }
         })
+        
         .catch(e=>{
             console.log(e)
         })
