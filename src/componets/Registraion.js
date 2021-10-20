@@ -59,7 +59,7 @@ export default function Registration() {
         }else if(!res){
           
           passwordBool= false  
-          setPasswordError("password must be at least 8 characters,1 letter and 1 digit");
+          setPasswordError("password must be at least 8 characters,1 Upper Case ,1 Lower case and 1 digit");
         }
       
 
