@@ -105,7 +105,7 @@ export const Home = () => {
     const renderPageNumbers = pageNumbers.map(number => {
        
         return (
-            <button className={`${number == currentPage? classes.btnActives :classes.btnNot}`}
+            <button className={`${number === parseInt(currentPage)? classes.btnActives :classes.btnNot}`}
             
             key={parseInt(number)}
             id={parseInt(number)}
