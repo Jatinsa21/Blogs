@@ -19,7 +19,7 @@ export const Home = () => {
         setCurrentPage (event.target.id)
 
     }  
-    console.log(currentPage)
+   
     useEffect(()=>{
         setLoading(true)
         fetch(`${process.env.REACT_APP_HOST}/blogs`, {
@@ -28,8 +28,10 @@ export const Home = () => {
              })
         .then(result => result.json())
         .then(result => {
+            
             setLoading(false)
             setAll(result)
+            
         for (let i = 1; i <= Math.ceil(result.length / renderPerPage); i++) {
             setPageNumbers(prev=>[...prev,i])
             }
@@ -51,10 +53,11 @@ export const Home = () => {
     const indexOfLastBlog = currentPage * renderPerPage;
     const indexOfFirstBlog = indexOfLastBlog - renderPerPage;
     const current = filterSearch.slice(indexOfFirstBlog, indexOfLastBlog);
+    
 
     const renderBlogs = current.map((ell, index) => {
       return ell ? (<>
-        <div className={classes.card}>
+        <div key={index} className={classes.card}>
             <div className={classes.img}>
                 <Link className={classes.image}
                  to={{pathname: `/main/${ell.id}`,}}>
@@ -131,8 +134,8 @@ export const Home = () => {
                 <div className={classes.noch}>
                     <div className={classes.type}>
                         {
-                            menu.map((ele) => (
-                                <button className={`${filterName === ele.name && classes.btnActive }`} onClick={()=>setFilterName(ele.name)} >{ele.name}</button>
+                            menu.map((ele,index) => (
+                                <button key={index} className={`${filterName === ele.name && classes.btnActive }`} onClick={()=>setFilterName(ele.name)} >{ele.name}</button>
                             ))}
                         
                     </div>
@@ -140,8 +143,8 @@ export const Home = () => {
                            const selected=e.target.value;
                            setFilterName(selected)
                                 }} >  {
-                            menu.map((ele) => (
-                                <option  value={ele.name}  >{ele.name}</option>
+                            menu.map((ele,index) => (
+                                <option key={index} value={ele.name}  >{ele.name}</option>
                             ))
                         }</select>
                     </div>
