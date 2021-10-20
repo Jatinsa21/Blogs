@@ -21,7 +21,7 @@ function App() {
             exact
             path="/home"
             render={(props) => {
-              return jwt?(
+              return JSON.parse(localStorage.getItem("key"))?(
                 <Home/>
               ) : (
                 <Redirect to="/" />

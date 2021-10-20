@@ -1,6 +1,6 @@
 import React,{useEffect,useState} from 'react';
 import classes from "./Main.module.css"
-import { useLocation ,Link ,useParams} from 'react-router-dom'
+import { useParams} from 'react-router-dom'
 import Loading from '../../componets/Loading/Loading';
 
 
