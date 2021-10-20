@@ -157,6 +157,9 @@
     flex-direction: column;
     flex-direction:row;
 }
+.prev2{
+display: none;
+}
 .previous{
     display: flex;
 }
@@ -177,12 +180,7 @@
     height: 100px;
 
 }
-.over{
-    position: absolute;
-    height: 120px;
-   
-    background: turquoise;
-}
+
 .pImg img {
     height: 100px;
     padding: 20px;
@@ -200,6 +198,15 @@
     background: transparent;
     
 }
+
+.pImg2 :hover{
+    cursor: pointer;
+
+}
+.pLink2 button:hover{
+    cursor: pointer;
+}
+
 
 @media only screen and (max-width: 950px) { 
     .img img{
@@ -226,25 +233,60 @@
         width: 80%;
      text-align: center;
         font-size: 25px;
-       
-    }
-    .pImg{
-        height: auto;
-    }
-    .pLink{
-       align-content: flex-start;
+        
     }
     .content{
         width: 90%;
     }
-    .pImg img {
-        height: auto;
-        width: 200px;
+    .prev{
+        display: none;
+     }
+     .prev2{
+        
+         width: 100%;
+         padding-top: 20px;
+         display: flex;
+         
+        
+         justify-content: space-between;
+         
+     }
+    .previous2{
+        position: relative;
+        width: 40%;
+    }
+    .next2{
+        position: relative;
+        width: 40%;
+        margin-left: auto;
+    }
+    .pImg2{
+        position: absolute;
+        z-index: 1; 
+    }
+  .pImg2 img {
+        width:100% ;   
+    }
+    .pLink2{position: absolute;
+        z-index: 10;
+        height: 60%;
+        width: 100%;
         
     }
-    .prev{
-        flex-wrap: wrap;
+    
+    .pLink2 button{
+        height: 60px;
+        background:rgba(191, 191, 191, 0.6);
+        font-size: 15px;
+        outline: none;
+        border: none;
+        width: 100%;
+        font-weight: bold;
+        color: rgb(255, 0, 0);
+        /* background: transparent; */
+        
     }
+
 
  
 }

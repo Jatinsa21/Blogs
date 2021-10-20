@@ -171,6 +171,27 @@ function Main() {
                         </div>
                     </div>}
                 </div>
+                <div className={classes.prev2}>
+                {gotP && <div className={classes.previous2}>
+                        <div className={classes.pImg2}>
+                        {prev.BlogImg&& <img src={prev.BlogImg.url} onClick={loadP}/>}
+                        </div>
+                        <div className={classes.pLink2}>
+                        <button onClick={loadP}>
+                            Previous   </button>
+                        </div>
+                    </div>}
+                    {gotN &&  <div className={classes.next2}>
+                        <div className={classes.pLink2}>
+                        <button onClick={loadN}>
+                             Next   </button>
+                        </div>
+                        <div className={classes.pImg2}>
+                        {next.BlogImg&& <img src={next.BlogImg.url} onClick={loadN}/>}
+                        </div>
+                    </div>}
+
+                </div>
 
                
     </div>
