@@ -8,7 +8,7 @@ import {Route,Switch,Redirect} from "react-router-dom"
 import Forgot from './componets/ForgotPassword/Forgot';
 import Main from './pages/Main/Main';
 function App() {
-  const jwt = JSON.parse(localStorage.getItem("key"))
+  // const jwt = JSON.parse(localStorage.getItem("key"))
   return (<>
       
     <Switch>
@@ -32,7 +32,7 @@ function App() {
             exact
             path="/main/:id"
             render={(props) => {
-              return jwt?(
+              return JSON.parse(localStorage.getItem("key"))?(
                 <Main/>
               ) : (
                 <Redirect to="/" />
