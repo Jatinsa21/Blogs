@@ -22,6 +22,7 @@ function Main() {
   function loadP() {
     setIds((ids) => ids - 1);
   }
+
   useEffect(() => {
     setLoading(true);
     fetch(`${process.env.REACT_APP_HOST}/blogs/${ids}`, {
@@ -42,9 +43,7 @@ function Main() {
 
   useEffect(
     () => {
-      if (ids === 9) {
-        setGotP(false);
-      } else {
+     
         setLoading(true);
         setGotP(true);
         fetch(`${process.env.REACT_APP_HOST}/blogs/${back}`, {
@@ -59,18 +58,17 @@ function Main() {
           })
           .catch((e) => {
             setLoading(false);
+            setGotP(false);
             console.log(e);
           });
-      }
+      
     },
     [back,ids]
   );
 
   useEffect(
     () => {
-      if (ids === 16) {
-        setGotN(false);
-      } else {
+      
         setLoading(true);
         fetch(`${process.env.REACT_APP_HOST}/blogs/${nexts}`, {
           method: "GET",
@@ -84,9 +82,10 @@ function Main() {
           })
           .catch((e) => {
             setLoading(false);
+            setGotN(false);
             console.log(e);
           });
-      }
+      
     },
     [nexts,ids]
   );
