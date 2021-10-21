@@ -1,16 +1,15 @@
-.main{
-    font-family: "Poppins", sans-serif;
-background-color:white;
-border-radius: 10px;
-max-width:200px;
-align-items: center;
-justify-content: center;
-display: flex;
-padding: 20px;
-
+.main {
+  font-family: "Poppins", sans-serif;
+  background-color: white;
+  border-radius: 10px;
+  max-width: 200px;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  padding: 20px;
 }
 
-.alert{color: rgb(240, 52, 52);
-    font-size: 16px;
-  
+.alert {
+  color: rgb(240, 52, 52);
+  font-size: 16px;
 }
