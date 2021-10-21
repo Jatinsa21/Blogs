@@ -41,54 +41,42 @@ function Main() {
       });
   }, [ids]);
 
-  useEffect(
-    () => {
-     
-        setLoading(true);
-        setGotP(true);
-        fetch(`${process.env.REACT_APP_HOST}/blogs/${back}`, {
-          method: "GET",
-          headers: { "Content-Type": "application/json" },
-        })
-          .then((result) => result.json())
-          .then((result) => {
-            setLoading(false);
+  useEffect(() => {
+    setLoading(true);
+    setGotP(true);
+    fetch(`${process.env.REACT_APP_HOST}/blogs/${back}`, {
+      method: "GET",
+      headers: { "Content-Type": "application/json" },
+    })
+      .then((result) => result.json())
+      .then((result) => {
+        setLoading(false);
 
-            setPrev(result);
-          })
-          .catch((e) => {
-            setLoading(false);
-            setGotP(false);
-            console.log(e);
-          });
-      
-    },
-    [back,ids]
-  );
+        setPrev(result);
+      })
+      .catch((e) => {
+        setLoading(false);
+        setGotP(false);
+      });
+  }, [back, ids]);
 
-  useEffect(
-    () => {
-      
-        setLoading(true);
-        fetch(`${process.env.REACT_APP_HOST}/blogs/${nexts}`, {
-          method: "GET",
-          headers: { "Content-Type": "application/json" },
-        })
-          .then((result) => result.json())
-          .then((result) => {
-            setLoading(false);
-            setGotN(true);
-            setNext(result);
-          })
-          .catch((e) => {
-            setLoading(false);
-            setGotN(false);
-            console.log(e);
-          });
-      
-    },
-    [nexts,ids]
-  );
+  useEffect(() => {
+    setLoading(true);
+    fetch(`${process.env.REACT_APP_HOST}/blogs/${nexts}`, {
+      method: "GET",
+      headers: { "Content-Type": "application/json" },
+    })
+      .then((result) => result.json())
+      .then((result) => {
+        setLoading(false);
+        setGotN(true);
+        setNext(result);
+      })
+      .catch((e) => {
+        setLoading(false);
+        setGotN(false);
+      });
+  }, [nexts, ids]);
 
   return loading ? (
     <div className={classes.loading}>
@@ -100,13 +88,13 @@ function Main() {
       <div className={classes.center}>
         <div className centers>
           <div className={classes.img}>
-            {all.BlogImg && <img src={all.BlogImg.url}alt="" />}
+            {all.BlogImg && <img src={all.BlogImg.url} alt="" />}
           </div>
 
           <div className={classes.mid}>
             <div className={classes.author}>
               <div className={classes.aImage}>
-                {all.BlogImg && <img src={all.authorImage.url}alt="" />}
+                {all.BlogImg && <img src={all.authorImage.url} alt="" />}
               </div>
               <div className={classes.adetails}>
                 <div className={classes.aName}>{all.Author}</div>
@@ -126,7 +114,9 @@ function Main() {
         {gotP && (
           <div className={classes.previous}>
             <div className={classes.pImg}>
-              {prev.BlogImg && <img src={prev.BlogImg.url} onClick={loadP}alt="" />}
+              {prev.BlogImg && (
+                <img src={prev.BlogImg.url} onClick={loadP} alt="" />
+              )}
               <div className={classes.over}></div>
             </div>
 
@@ -141,7 +131,9 @@ function Main() {
               <button onClick={loadN}>View Next Blog </button>
             </div>
             <div className={classes.pImg}>
-              {next.BlogImg && <img src={next.BlogImg.url} onClick={loadN} alt=""/>}
+              {next.BlogImg && (
+                <img src={next.BlogImg.url} onClick={loadN} alt="" />
+              )}
             </div>
           </div>
         )}
@@ -150,7 +142,9 @@ function Main() {
         {gotP && (
           <div className={classes.previous2}>
             <div className={classes.pImg2}>
-              {prev.BlogImg && <img src={prev.BlogImg.url} onClick={loadP} alt="" />}
+              {prev.BlogImg && (
+                <img src={prev.BlogImg.url} onClick={loadP} alt="" />
+              )}
             </div>
             <div className={classes.pLink2}>
               <button onClick={loadP}>Previous </button>
@@ -163,7 +157,9 @@ function Main() {
               <button onClick={loadN}>Next </button>
             </div>
             <div className={classes.pImg2}>
-              {next.BlogImg && <img src={next.BlogImg.url} onClick={loadN} alt="" />}
+              {next.BlogImg && (
+                <img src={next.BlogImg.url} onClick={loadN} alt="" />
+              )}
             </div>
           </div>
         )}

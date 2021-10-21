@@ -40,6 +40,7 @@ export const Home = () => {
         setLoading(false);
         console.log(e);
       });
+    // eslint-disable-next-line
   }, []);
   function previous() {
     setCurrentPage(parseInt(currentPage) - 1);
