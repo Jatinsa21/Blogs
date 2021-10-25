@@ -1,10 +1,11 @@
 import "./App.css";
-import Login from "./componets/Login";
-import Registration from "./componets/Registraion";
-import { Home } from "./pages/Home";
+import Login from "./componets/Login/Login";
+import Registration from "./componets/Registraion/Registraion";
+import { Home } from "./pages/Home/Home";
 import { Route, Switch, Redirect } from "react-router-dom";
 import Forgot from "./componets/ForgotPassword/Forgot";
 import Main from "./pages/Main/Main";
+import NoMatch from "./componets/noPage/NoMatch";
 function App() {
   return (
     <>
@@ -16,7 +17,7 @@ function App() {
           exact
           path="/home"
           render={(props) => {
-            return JSON.parse(localStorage.getItem("key")) ? (
+            return JSON.parse(localStorage.getItem("validating")) ? (
               <Home />
             ) : (
               <Redirect to="/" />
@@ -27,13 +28,17 @@ function App() {
           exact
           path="/main/:id"
           render={(props) => {
-            return JSON.parse(localStorage.getItem("key")) ? (
+            return JSON.parse(localStorage.getItem("validating")) ? (
               <Main />
             ) : (
               <Redirect to="/" />
             );
           }}
+
         />
+        <Route path="*">
+            <NoMatch/>
+          </Route>
       </Switch>
     </>
   );

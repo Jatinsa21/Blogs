@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import classes from "./Login.module.css";
 import { useHistory, Link } from "react-router-dom";
-import Alert from "./Alert/Alert";
+import Alert from "../Alert/Alert";
 
 export default function Login() {
   const [done, setDone] = useState("");
@@ -32,7 +32,7 @@ export default function Login() {
       .then((result) => result.json())
       .then((result) => {
         if (result.jwt) {
-          localStorage.setItem("key", JSON.stringify(result.jwt));
+          localStorage.setItem("validating", JSON.stringify(result.jwt));
           jwt = result.jwt;
           if (jwt) {
             goHome();

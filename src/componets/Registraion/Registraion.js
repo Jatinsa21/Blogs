@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import classes from "./Registraion.module.css";
 import { Link } from "react-router-dom";
-import Alert from "./Alert/Alert";
+import Alert from "../Alert/Alert";
 
 export default function Registration() {
   const [email, setEmail] = useState("");
@@ -20,7 +20,6 @@ export default function Registration() {
   let passwordBool = false;
   let confirmPassBool = false;
   let samePassBool = false;
-
   function validation() {
     if (username === "") {
       userNameBool = false;
@@ -44,7 +43,7 @@ export default function Registration() {
 
       setPasswordError("Password  can't be empty");
     } else if (password !== "") {
-      var patt = new RegExp(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/);
+      var patt = new RegExp(/^(?=.{8,})(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=]).*$/);
       var res = patt.test(password);
       if (res) {
         passwordBool = true;
@@ -52,7 +51,7 @@ export default function Registration() {
       } else if (!res) {
         passwordBool = false;
         setPasswordError(
-          "password must be at least 8 characters,1 Upper Case ,1 Lower case and 1 digit"
+          "password must be at least 8 characters,1 Upper Case ,1 Lower case,1 special character and 1 digit"
         );
       }
     }

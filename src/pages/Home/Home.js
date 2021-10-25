@@ -1,18 +1,17 @@
 import React, { useEffect, useState } from "react";
 import classes from "./Home.module.css";
 import { Link } from "react-router-dom";
-import Loading from "../componets/Loading/Loading";
+import Loading from "../../componets/Loading/Loading";
 
 export const Home = () => {
   const [loading, setLoading] = useState(false);
-
   const [all, setAll] = useState([]);
   const [searchInput, setSearchInput] = useState("");
   const [filterName, setFilterName] = useState("All");
   const filters =
     filterName === "All" ? all : all.filter((el) => el.Type === filterName);
   const [currentPage, setCurrentPage] = useState(1);
-  const renderPerPage = useState(3);
+  const renderPerPage = useState(process.env.REACT_APP_ARTICLEPERPAGE);
   const [pageNumbers, setPageNumbers] = useState([]);
   const filterSearch = filters.filter((el) =>
     el.Heading?.toLowerCase().includes(searchInput?.toLowerCase())
@@ -31,6 +30,7 @@ export const Home = () => {
       .then((result) => {
         setLoading(false);
         setAll(result);
+        console.log(result)
 
         for (let i = 1; i <= Math.ceil(result.length / renderPerPage[0]); i++) {
           setPageNumbers((prev) => [...prev, i]);
@@ -42,6 +42,27 @@ export const Home = () => {
       });
     // eslint-disable-next-line
   }, []);
+
+  useEffect(() => {
+    fetch(`${process.env.REACT_APP_HOST}/blogs/type`, {
+      method: "GET",
+      headers: { "Content-Type": "application/json" },
+    })
+      .then((result) => result.json())
+      .then((result) => {
+        
+        console.log(result)
+
+      })
+      .catch((e) => {
+        setLoading(false);
+        console.log(e);
+      });
+    // eslint-disable-next-line
+  }, []);
+
+
+
   function previous() {
     setCurrentPage(parseInt(currentPage) - 1);
   }
@@ -174,7 +195,7 @@ export const Home = () => {
         <div className={classes.logout} onClick={removeJwt}>
           <Link className={classes.logoutBtn} to="/">
             <img
-              src="https://res.cloudinary.com/ditkixi88/image/upload/v1634537161/Icons8_Windows_8_User_Interface_Logout_5bf970826f.ico"
+              src={process.env.REACT_APP_LOGOUT}
               alt=""
             />
           </Link>
