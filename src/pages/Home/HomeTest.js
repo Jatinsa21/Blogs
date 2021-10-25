@@ -5,7 +5,7 @@ import Loading from "../../componets/Loading/Loading";
 import BLOGS_QUERY from "../../componets/queries/blogs/Blogs";
 import { useQuery } from "@apollo/client";
 
-export default function Home() {
+export default function HomeTest() {
   const [searchInput, setSearchInput] = useState("");
   const [filterName, setFilterName] = useState("All");
   const [currentPage, setCurrentPage] = useState(1);

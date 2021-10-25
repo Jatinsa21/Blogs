@@ -2,15 +2,18 @@ import React, { useEffect, useState } from "react";
 import classes from "./Main.module.css";
 import { useParams } from "react-router-dom";
 import Loading from "../../componets/Loading/Loading";
+import BLOGS_QUERY from "../../componets/queries/blogs/Blogs";
+import { useQuery } from "@apollo/client";
 
 function Main() {
   const [all, setAll] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [aloading, setLoading] = useState(false);
   const [prev, setPrev] = useState([]);
   const [next, setNext] = useState([]);
   const [gotP, setGotP] = useState(false);
   const [gotN, setGotN] = useState(false);
   let { id } = useParams();
+
   const [ids, setIds] = useState(parseInt(id));
   let idx = parseInt(ids);
   let back = idx - 1;
@@ -78,7 +81,7 @@ function Main() {
       });
   }, [nexts, ids]);
 
-  return loading ? (
+  return aloading ? (
     <div className={classes.loading}>
       <Loading />
     </div>
