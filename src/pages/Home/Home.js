@@ -1,4 +1,4 @@
-import React, {  useState ,useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import classes from "./Home.module.css";
 import { Link } from "react-router-dom";
 import Loading from "../../componets/Loading/Loading";
@@ -10,7 +10,7 @@ export default function Home() {
   const [filterName, setFilterName] = useState("All");
   const [currentPage, setCurrentPage] = useState(1);
   const renderPerPage = useState(process.env.REACT_APP_ARTICLEPERPAGE);
-  const [pageNumbers, setPageNumbers] = useState([]);
+  let pageNumbers = [];
   // const menu = [
   //   {
   //     name: "All",
@@ -24,22 +24,20 @@ export default function Home() {
   // ];
   const { loading, error, data } = useQuery(BLOGS_QUERY);
   if (loading)
-  return (
-    <div className={classes.loading}>
+    return (
+      <div className={classes.loading}>
         <Loading />
       </div>
     );
-    
-    if (error) return <p>error...</p>;
-    const all = data.blogs;
-    
-    const menu = data.menus;
 
-    // if(data){for (let i = 1; i <= Math.ceil(data.blogs.length / renderPerPage[0]); i++) {
-    //   setPageNumbers((prev) => [...prev, i]);}
-    // }
+  if (error) return <p>error...</p>;
+  const all = data.blogs;
 
-    
+  const menu = data.menus;
+
+  for (let i = 1; i <= Math.ceil(data.blogs.length / renderPerPage[0]); i++) {
+    pageNumbers.push(i);
+  }
   const filters =
     filterName === "All" ? all : all.filter((el) => el.Type === filterName);
 
@@ -47,7 +45,7 @@ export default function Home() {
     el.Heading?.toLowerCase().includes(searchInput?.toLowerCase())
   );
   function handleClick(event) {
-    setCurrentPage(event.target.id);
+    setCurrentPage(parseInt(event.target.id));
   }
   function previous() {
     setCurrentPage(parseInt(currentPage) - 1);
@@ -114,7 +112,9 @@ export default function Home() {
       </>
     ) : null;
   });
-  const renderPageNumbers = pageNumbers.map((number) => {
+  const renderPageNumbers = pageNumbers.map((numberr) => {
+    let number = parseInt(numberr);
+    console.log(currentPage);
     return (
       <button
         className={`${
@@ -128,7 +128,7 @@ export default function Home() {
       </button>
     );
   });
-  
+
   function removeJwt() {
     localStorage.clear();
   }
@@ -180,16 +180,14 @@ export default function Home() {
         {renderBlogs}
         <div className={classes.pages}>
           <div>
-            {" "}
-            {currentPage !== 1 && (
+            {currentPage !== 1 ? (
               <button className={classes.jump} onClick={previous}>
                 Previous page
               </button>
-            )}
+            ) : null}
           </div>
           <div> {renderPageNumbers} </div>
           <div>
-            {" "}
             {currentPage !== pageNumbers.length && (
               <button className={classes.jump} onClick={next}>
                 Next page
