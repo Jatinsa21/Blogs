@@ -1,91 +1,70 @@
 import React, { useEffect, useState } from "react";
 import classes from "./Main.module.css";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import Loading from "../../componets/Loading/Loading";
-import BLOGS_QUERY from "../../componets/queries/blogs/Blogs";
 import { useQuery } from "@apollo/client";
+import { gql } from "@apollo/client";
 
-function Main() {
-  const [all, setAll] = useState([]);
-  const [aloading, setLoading] = useState(false);
-  const [prev, setPrev] = useState([]);
-  const [next, setNext] = useState([]);
-  const [gotP, setGotP] = useState(false);
-  const [gotN, setGotN] = useState(false);
+export default function Main() {
+  // const [prev, setPrev] = useState([]);
+  // const [next, setNext] = useState([]);
+  // const [gotP, setGotP] = useState(false);
+  // const [gotN, setGotN] = useState(false);
   let { id } = useParams();
+  // const [ids, setIds] = useState(parseInt(id));
+  // let idx = parseInt(ids);
+  // let back = idx - 1;
+  // let nexts = idx + 1;
+  // function loadN() {
+  //   setIds((ids) => ids + 1);
+  // }
+  // function loadP() {
+  //   setIds((ids) => ids - 1);
+  // }
+  const BLOGS_QUERY = gql`
+    query Blogs($ID: ID!, $PID: ID!, $NID: ID!) {
+      blogs(where: { id: [$ID, $PID, $NID] }) {
+        id
+        Heading
+        Author
+        BlogImg {
+          url
+        }
+        authorImage {
+          url
+        }
+        Content
+        Description
+        Type
+        readTime
+      }
+    }
+  `;
 
-  const [ids, setIds] = useState(parseInt(id));
-  let idx = parseInt(ids);
-  let back = idx - 1;
-  let nexts = idx + 1;
+  const { loading, error, data } = useQuery(BLOGS_QUERY, {
+    variables: {
+      ID: id,
+      PID: parseInt(id) - 1,
+      NID: parseInt(id) + 1,
+    },
+  });
 
-  function loadN() {
-    setIds((ids) => ids + 1);
-  }
-  function loadP() {
-    setIds((ids) => ids - 1);
-  }
+  if (loading)
+    return (
+      <div className={classes.loading}>
+        <Loading />
+      </div>
+    );
+  if (error) return <p>error...</p>;
+  const all = data.blogs.filter((el) => el.id === id)[0];
+  const prev = data.blogs.filter((elp) => {
+    return parseInt(elp.id) === parseInt(id) - 1;
+  })[0];
+  const next = data.blogs.filter((eln) => {
+    return parseInt(eln.id) === parseInt(id) + 1;
+  })[0];
 
-  useEffect(() => {
-    setLoading(true);
-    fetch(`${process.env.REACT_APP_HOST}/blogs/${ids}`, {
-      method: "GET",
-      headers: { "Content-Type": "application/json" },
-    })
-      .then((result) => result.json())
-      .then((result) => {
-        setLoading(false);
-
-        setAll(result);
-      })
-      .catch((e) => {
-        setLoading(false);
-        console.log(e);
-      });
-  }, [ids]);
-
-  useEffect(() => {
-    setLoading(true);
-    setGotP(true);
-    fetch(`${process.env.REACT_APP_HOST}/blogs/${back}`, {
-      method: "GET",
-      headers: { "Content-Type": "application/json" },
-    })
-      .then((result) => result.json())
-      .then((result) => {
-        setLoading(false);
-
-        setPrev(result);
-      })
-      .catch((e) => {
-        setLoading(false);
-        setGotP(false);
-      });
-  }, [back, ids]);
-
-  useEffect(() => {
-    setLoading(true);
-    fetch(`${process.env.REACT_APP_HOST}/blogs/${nexts}`, {
-      method: "GET",
-      headers: { "Content-Type": "application/json" },
-    })
-      .then((result) => result.json())
-      .then((result) => {
-        setLoading(false);
-        setGotN(true);
-        setNext(result);
-      })
-      .catch((e) => {
-        setLoading(false);
-        setGotN(false);
-      });
-  }, [nexts, ids]);
-
-  return aloading ? (
-    <div className={classes.loading}>
-      <Loading />
-    </div>
-  ) : (
+  return (
     <div className={classes.parent}>
       <div className={classes.heading}>{all.Heading}</div>
       <div className={classes.center}>
@@ -114,61 +93,62 @@ function Main() {
         </div>
       </div>
       <div className={classes.prev}>
-        {gotP && (
-          <div className={classes.previous}>
-            <div className={classes.pImg}>
-              {prev.BlogImg && (
-                <img src={prev.BlogImg.url} onClick={loadP} alt="" />
-              )}
-              <div className={classes.over}></div>
-            </div>
+        {prev && (
+          <Link to={{ pathname: `/main/${id - 1}` }}>
+            <div className={classes.previous}>
+              <div className={classes.pImg}>
+                {prev.BlogImg && <img src={prev.BlogImg.url} alt="" />}
+                <div className={classes.over}></div>
+              </div>
 
-            <div className={classes.pLink}>
-              <button onClick={loadP}>View Previous Blog </button>
+              <div className={classes.pLink}>
+                {" "}
+                <button> View Previous Blog</button>
+              </div>
             </div>
-          </div>
+          </Link>
         )}
-        {gotN && (
-          <div className={classes.next}>
-            <div className={classes.pLink}>
-              <button onClick={loadN}>View Next Blog </button>
+        {next && (
+          <Link className={classes.end} to={{ pathname: `/main/${parseInt(id) + 1}` }}>
+            <div className={classes.next}>
+              <div className={classes.pLink}>
+                <button>View Next Blog </button>
+              </div>
+              <div className={classes.pImg}>
+                {next.BlogImg && <img src={next.BlogImg.url} alt="" />}
+              </div>
             </div>
-            <div className={classes.pImg}>
-              {next.BlogImg && (
-                <img src={next.BlogImg.url} onClick={loadN} alt="" />
-              )}
-            </div>
-          </div>
+          </Link>
         )}
       </div>
       <div className={classes.prev2}>
-        {gotP && (
-          <div className={classes.previous2}>
-            <div className={classes.pImg2}>
-              {prev.BlogImg && (
-                <img src={prev.BlogImg.url} onClick={loadP} alt="" />
-              )}
+        {prev && (
+      
+            <div className={classes.previous2}>
+              <div className={classes.pImg2}>
+                {prev.BlogImg && <img src={prev.BlogImg.url} alt="" />}
+              </div>
+              <div className={classes.pLink2}>
+              <Link to={{ pathname: `/main/${id - 1}` }}>
+                <button>Previous </button>
+                </Link>
+              </div>
             </div>
-            <div className={classes.pLink2}>
-              <button onClick={loadP}>Previous </button>
-            </div>
-          </div>
+         
         )}
-        {gotN && (
+        {next && (
           <div className={classes.next2}>
-            <div className={classes.pLink2}>
-              <button onClick={loadN}>Next </button>
+              <div className={classes.pLink2}>
+              <Link to={{ pathname: `/main/${parseInt(id) + 1}` }}>
+                <button>Next </button>
+          </Link>
+              </div>
+              <div className={classes.pImg2}>
+                {next.BlogImg && <img src={next.BlogImg.url} alt="" />}
+              </div>
             </div>
-            <div className={classes.pImg2}>
-              {next.BlogImg && (
-                <img src={next.BlogImg.url} onClick={loadN} alt="" />
-              )}
-            </div>
-          </div>
         )}
       </div>
     </div>
   );
 }
-
-export default Main;
