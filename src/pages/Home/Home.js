@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import classes from "./Home.module.css";
 import { Link } from "react-router-dom";
 import Loading from "../../componets/Loading/Loading";
@@ -30,7 +30,7 @@ export default function Home() {
       </div>
     );
 
-  if (error) return <p>error...</p>;
+  if (error) return <p>{JSON.stringify(error)}</p>;
   const all = data.blogs;
 
   const menu = data.menus;
@@ -114,7 +114,7 @@ export default function Home() {
   });
   const renderPageNumbers = pageNumbers.map((numberr) => {
     let number = parseInt(numberr);
-    console.log(currentPage);
+
     return (
       <button
         className={`${
