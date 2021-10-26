@@ -35,9 +35,9 @@ export default function Home() {
 
   const menu = data.menus;
 
-  for (let i = 1; i <= Math.ceil(data.blogs.length / renderPerPage[0]); i++) {
-    pageNumbers.push(i);
-  }
+  // for (let i = 1; i <= Math.ceil(data.blogs.length / renderPerPage[0]); i++) {
+  //   pageNumbers.push(i);
+  // }
   const filters =
     filterName === "All" ? all : all.filter((el) => el.Type === filterName);
 
@@ -56,6 +56,9 @@ export default function Home() {
   const indexOfLastBlog = currentPage * renderPerPage[0];
   const indexOfFirstBlog = indexOfLastBlog - renderPerPage[0];
   const current = filterSearch.slice(indexOfFirstBlog, indexOfLastBlog);
+  for (let i = 1; i <= Math.ceil(filterSearch.length / renderPerPage[0]); i++) {
+    pageNumbers.push(i);
+  }
   const renderBlogs = current.map((ell, index) => {
     return ell ? (
       <>
