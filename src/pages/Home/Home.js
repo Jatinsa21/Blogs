@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, {  useState } from "react";
 import classes from "./Home.module.css";
 import { Link } from "react-router-dom";
 import Loading from "../../componets/Loading/Loading";
@@ -31,7 +31,7 @@ export default function Home() {
     );
   if (error) return <p>error...</p>;
   const all = data.blogs;
-  console.log(all);
+  
   const filters =
     filterName === "All" ? all : all.filter((el) => el.Type === filterName);
 
