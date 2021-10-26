@@ -12,7 +12,11 @@ const BLOGS_QUERY = gql`
       Type,
       readTime
     }
+    menus{
+      name
+    }
   }
+  
 `;
 
 export default BLOGS_QUERY;

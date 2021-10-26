@@ -1,4 +1,4 @@
-import React, {  useState } from "react";
+import React, {  useState ,useEffect} from "react";
 import classes from "./Home.module.css";
 import { Link } from "react-router-dom";
 import Loading from "../../componets/Loading/Loading";
@@ -11,27 +11,35 @@ export default function Home() {
   const [currentPage, setCurrentPage] = useState(1);
   const renderPerPage = useState(process.env.REACT_APP_ARTICLEPERPAGE);
   const [pageNumbers, setPageNumbers] = useState([]);
-  const menu = [
-    {
-      name: "All",
-    },
-    {
-      name: "Technology",
-    },
-    {
-      name: "Marketing",
-    },
-  ];
+  // const menu = [
+  //   {
+  //     name: "All",
+  //   },
+  //   {
+  //     name: "Technology",
+  //   },
+  //   {
+  //     name: "Marketing",
+  //   },
+  // ];
   const { loading, error, data } = useQuery(BLOGS_QUERY);
   if (loading)
-    return (
-      <div className={classes.loading}>
+  return (
+    <div className={classes.loading}>
         <Loading />
       </div>
     );
-  if (error) return <p>error...</p>;
-  const all = data.blogs;
-  
+    
+    if (error) return <p>error...</p>;
+    const all = data.blogs;
+    console.log(data.menus)
+    const menu = data.menus;
+
+    // if(data){for (let i = 1; i <= Math.ceil(data.blogs.length / renderPerPage[0]); i++) {
+    //   setPageNumbers((prev) => [...prev, i]);}
+    // }
+
+    
   const filters =
     filterName === "All" ? all : all.filter((el) => el.Type === filterName);
 
@@ -120,6 +128,7 @@ export default function Home() {
       </button>
     );
   });
+  
   function removeJwt() {
     localStorage.clear();
   }
