@@ -32,7 +32,7 @@ export default function Home() {
     
     if (error) return <p>error...</p>;
     const all = data.blogs;
-    console.log(data.menus)
+    
     const menu = data.menus;
 
     // if(data){for (let i = 1; i <= Math.ceil(data.blogs.length / renderPerPage[0]); i++) {
