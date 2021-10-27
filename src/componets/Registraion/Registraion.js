@@ -43,7 +43,9 @@ export default function Registration() {
 
       setPasswordError("Password  can't be empty");
     } else if (password !== "") {
-      var patt = new RegExp(/^(?=.{8,})(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=]).*$/);
+      var patt = new RegExp(
+        /^(?=.{8,})(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=]).*$/
+      );
       var res = patt.test(password);
       if (res) {
         passwordBool = true;

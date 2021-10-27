@@ -14,7 +14,6 @@ function App() {
     <ApolloProvider client={client}>
       <Switch>
         <Route exact path="/" component={Login} />
-       
         <Route exact path="/registration" component={Registration} />
         <Route exact path="/forgot" component={Forgot} />
         <Route
@@ -23,7 +22,6 @@ function App() {
           render={(props) => {
             return JSON.parse(localStorage.getItem("validating")) ? (
               <Home />
-              
             ) : (
               <Redirect to="/" />
             );

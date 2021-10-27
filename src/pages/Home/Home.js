@@ -11,17 +11,7 @@ export default function Home() {
   const [currentPage, setCurrentPage] = useState(1);
   const renderPerPage = useState(process.env.REACT_APP_ARTICLEPERPAGE);
   let pageNumbers = [];
-  // const menu = [
-  //   {
-  //     name: "All",
-  //   },
-  //   {
-  //     name: "Technology",
-  //   },
-  //   {
-  //     name: "Marketing",
-  //   },
-  // ];
+
   const { loading, error, data } = useQuery(BLOGS_QUERY);
   if (loading)
     return (
@@ -35,9 +25,6 @@ export default function Home() {
 
   const menu = data.menus;
 
-  // for (let i = 1; i <= Math.ceil(data.blogs.length / renderPerPage[0]); i++) {
-  //   pageNumbers.push(i);
-  // }
   const filters =
     filterName === "All" ? all : all.filter((el) => el.Type === filterName);
 
