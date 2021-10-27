@@ -68,7 +68,7 @@ export default function Main() {
     <div className={classes.parent}>
       <div className={classes.heading}>{all.Heading}</div>
       <div className={classes.center}>
-        <div className centers>
+        <div >
           <div className={classes.img}>
             {all.BlogImg && <img src={all.BlogImg.url} alt="" />}
           </div>

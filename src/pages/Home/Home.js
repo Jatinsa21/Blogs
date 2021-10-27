@@ -48,8 +48,8 @@ export default function Home() {
   }
   const renderBlogs = current.map((ell, index) => {
     return ell ? (
-      <>
-        <div key={index} className={classes.card}>
+      <div key={index}>
+        <div className={classes.card}>
           <div className={classes.img}>
             <Link
               className={classes.image}
@@ -99,7 +99,7 @@ export default function Home() {
         <div className={classes.line}>
           <hr></hr>
         </div>
-      </>
+      </div>
     ) : null;
   });
   const renderPageNumbers = pageNumbers.map((numberr) => {

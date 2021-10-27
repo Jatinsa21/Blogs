@@ -77,7 +77,7 @@ export default function Login() {
               type="password"
             />
             <div className={classes.forgot}>
-              <Link className={classes.forgotLink} Link to="/forgot">
+              <Link className={classes.forgotLink}  to="/forgot">
                 {" "}
                 Forgot password?
               </Link>
