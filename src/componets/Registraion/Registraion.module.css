@@ -35,7 +35,7 @@
 }
 .internal {
   width: 60%;
-  background-color:  #40bdee;;
+  background-color: orange;
   border-radius: 30px 0 30px 0;
   padding: 20px 90px 20px 90px;
 }
@@ -112,31 +112,6 @@
   display: flex;
 }
 @media only screen and (max-width: 870px) {
-  /* .span{
-      margin: 0;
-  }
-    .formReg{
-        
-        width: 60%;
-        align-items: center;
-        justify-content: center;
- 
-    }
-    .submit button{
-        width: 100%;
-    }
-    .internal{
-        margin: 0;
-        width: 100%;
-   
-    }
-
-    .register{
-
-        display: flex;
-        flex-direction: column;
-        
-    } */
   .formReg {
     width: 60%;
   }
